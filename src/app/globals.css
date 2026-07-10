@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-purple: #4b2e83;
+  --color-purple-dark: #35206b;
+  --color-gold: #c9a14a;
+  --color-gold-dark: #a88237;
+  --color-cream: #f8f5ef;
+  --color-warm-cream: #efe9dc;
+  --color-charcoal: #1f1a17;
+  --color-muted: #6b6158;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-cream text-charcoal font-sans antialiased;
+    font-feature-settings: 'ss01', 'ss02';
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display text-charcoal;
+  }
+  a {
+    @apply underline-offset-2;
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto w-full max-w-content px-5 md:px-8;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-purple px-6 py-4 font-sans font-semibold text-white transition hover:bg-purple-dark focus:outline-none focus:ring-2 focus:ring-purple focus:ring-offset-2;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border-2 border-gold bg-transparent px-6 py-4 font-sans font-semibold text-gold transition hover:bg-gold hover:text-charcoal focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+  }
+  .btn-gold-filled {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-gold px-6 py-4 font-sans font-semibold text-charcoal transition hover:bg-gold-dark focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border-2 border-charcoal/10 bg-white px-6 py-4 font-sans font-semibold text-charcoal transition hover:border-purple hover:text-purple;
+  }
+  .eyebrow {
+    @apply text-[13px] font-semibold uppercase tracking-[0.2em] text-gold;
+  }
+  .h1 {
+    @apply font-display text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[1.05] tracking-tightest;
+  }
+  .h2 {
+    @apply font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-semibold leading-tight tracking-tightest;
+  }
+  .h3 {
+    @apply font-display text-[clamp(1.25rem,2.2vw,1.625rem)] font-semibold leading-snug;
+  }
+  .lede {
+    @apply text-lg leading-relaxed text-charcoal md:text-xl;
+  }
+  .muted {
+    @apply text-muted;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
