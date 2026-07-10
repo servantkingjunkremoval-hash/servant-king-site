@@ -45,9 +45,7 @@ export const BRAND = {
 } as const;
 
 export const TRACKING = {
-  metaPixelId: '413008923033500',
-  snipeyFormId: '711IPzJp8GKJpqaH4sOb',
-  snipeyFormBase: 'https://api.leadconnectorhq.com/widget/form'
+  metaPixelId: '413008923033500'
 } as const;
 
 // Tel/SMS helpers
@@ -58,10 +56,3 @@ export const smsHref = (body?: string) => {
   return `sms:+1${BRAND.phone}?&body=${encoded}`;
 };
 export const mailtoHref = `mailto:${BRAND.email}`;
-
-// Snipey form URL with city/service tracking params
-export function snipeyFormUrl(opts?: { city?: string; service?: string }) {
-  const city = opts?.city ?? 'home';
-  const service = opts?.service ?? 'junk-removal';
-  return `${TRACKING.snipeyFormBase}/${TRACKING.snipeyFormId}?source_city=${city}&source_service=${service}`;
-}
