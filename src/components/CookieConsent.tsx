@@ -1,0 +1,127 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { TRACKING } from '@/lib/brand';
+
+/**
+ * CIPA / CCPA-friendly opt-in cookie consent.
+ *
+ * The Meta Pixel is NOT loaded until the visitor explicitly clicks "Accept".
+ * Choice is stored in localStorage under 'sk_cookie_consent' ('granted' | 'denied').
+ * The footer "Cookie Preferences" link dispatches 'sk:open-cookie-settings'
+ * to reopen this banner so a visitor can change their mind.
+ */
+
+const STORAGE_KEY = 'sk_cookie_consent';
+
+declare global {
+  interface Window {
+    __skPixelLoaded?: boolean;
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
+function loadMetaPixel() {
+  if (typeof window === 'undefined' || window.__skPixelLoaded) return;
+  window.__skPixelLoaded = true;
+
+  const pixelId = TRACKING.metaPixelId;
+  const s = document.createElement('script');
+  s.id = 'meta-pixel';
+  s.innerHTML = `
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '${pixelId}');
+    fbq('track', 'PageView');
+  `;
+  document.head.appendChild(s);
+}
+
+export function CookieConsent() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    let choice: string | null = null;
+    try {
+      choice = window.localStorage.getItem(STORAGE_KEY);
+    } catch {
+      choice = null;
+    }
+
+    if (choice === 'granted') {
+      loadMetaPixel();
+    } else if (choice !== 'denied') {
+      setVisible(true);
+    }
+
+    const reopen = () => setVisible(true);
+    window.addEventListener('sk:open-cookie-settings', reopen);
+    return () => window.removeEventListener('sk:open-cookie-settings', reopen);
+  }, []);
+
+  const accept = () => {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, 'granted');
+    } catch {
+      /* ignore */
+    }
+    loadMetaPixel();
+    setVisible(false);
+  };
+
+  const decline = () => {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, 'denied');
+    } catch {
+      /* ignore */
+    }
+    setVisible(false);
+  };
+
+  if (!visible) return null;
+
+  return (
+    <div
+      role="dialog"
+      aria-label="Cookie consent"
+      className="fixed inset-x-0 bottom-16 z-[60] md:bottom-0"
+    >
+      <div className="mx-auto mb-3 max-w-3xl rounded-xl bg-charcoal px-5 py-4 text-cream shadow-[0_4px_24px_rgba(0,0,0,0.25)] ring-1 ring-cream/10 md:mb-4 md:px-6 md:py-5">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <p className="text-[14px] leading-relaxed text-cream/90">
+            We use cookies and analytics (including the Meta Pixel) to understand
+            site traffic and improve your experience. These load only if you accept.
+            See our{' '}
+            <Link href="/privacy" className="font-semibold text-gold underline hover:text-gold-light">
+              Privacy Policy
+            </Link>
+            .
+          </p>
+          <div className="flex shrink-0 gap-3">
+            <button
+              type="button"
+              onClick={decline}
+              className="rounded-md border border-cream/30 px-4 py-2 text-[14px] font-semibold text-cream transition hover:bg-cream/10"
+            >
+              Decline
+            </button>
+            <button
+              type="button"
+              onClick={accept}
+              className="rounded-md bg-gold px-5 py-2 text-[14px] font-semibold text-charcoal transition hover:bg-gold-light"
+            >
+              Accept
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
