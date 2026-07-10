@@ -123,4 +123,31 @@ export function CookieConsent() {
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <p className="text-[14px] leading-relaxed text-cream/90">
             We use cookies and analytics (including the Meta Pixel) to understand
-            site traffic and improve your experience. These load only if you acce
+            site traffic and improve your experience. These load only if you accept.
+            See our{' '}
+            <Link href="/privacy" className="font-semibold text-gold underline hover:text-gold-light">
+              Privacy Policy
+            </Link>
+            .
+          </p>
+          <div className="flex shrink-0 gap-3">
+            <button
+              type="button"
+              onClick={decline}
+              className="rounded-md border border-cream/30 px-4 py-2 text-[14px] font-semibold text-cream transition hover:bg-cream/10"
+            >
+              Decline
+            </button>
+            <button
+              type="button"
+              onClick={accept}
+              className="rounded-md bg-gold px-5 py-2 text-[14px] font-semibold text-charcoal transition hover:bg-gold-light"
+            >
+              Accept
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
