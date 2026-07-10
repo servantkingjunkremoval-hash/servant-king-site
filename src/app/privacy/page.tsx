@@ -178,4 +178,11 @@ export default function PrivacyPage() {
           </div>
 
           <div className="flex flex-wrap gap-3 pt-2">
-            <Link href="/contact" class
+            <Link href="/contact" className="btn-primary">Get My Free Quote</Link>
+            <a href={telHref} className="btn-gold">Call {BRAND.phoneFormatted}</a>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
