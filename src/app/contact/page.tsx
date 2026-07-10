@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { BRAND, telHref, smsHref, mailtoHref } from '@/lib/brand';
 import { buildMetadata } from '@/lib/metadata';
-import { SnipeyForm } from '@/components/SnipeyForm';
+import { QuoteForm } from '@/components/QuoteForm';
 
 export const metadata: Metadata = buildMetadata({
   title: 'Contact Servant King — Free Quote, Same-Day Service',
@@ -68,26 +68,17 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Snipey form */}
+          {/* Quote form */}
           <div className="md:col-span-3">
             <div className="rounded-xl bg-white p-6 ring-1 ring-charcoal/5 md:p-8">
               <h2 className="font-display text-[26px] font-semibold">Request a Free Quote</h2>
               <p className="mt-2 text-[14px] text-muted">
-                Fill the form — we&apos;ll reach out within the hour. Or text 209-938-7407 for the fastest reply.
+                Fill it out and send it as a text or email — we&apos;ll reply with a flat-rate quote,
+                usually within the hour during business hours.
               </p>
               <div className="mt-6">
-                <SnipeyForm city="home" service="junk-removal" heightPx={540} />
+                <QuoteForm />
               </div>
-              <p className="mt-4 text-[12px] leading-relaxed text-muted">
-                This form is hosted and processed by our third-party lead-management
-                provider (LeadConnector / GoHighLevel) on our behalf. By submitting it
-                you agree that the details you provide may be handled by that provider
-                as described in our{' '}
-                <a href="/privacy" className="font-semibold text-purple hover:text-purple-dark">
-                  Privacy Policy
-                </a>
-                .
-              </p>
             </div>
           </div>
         </div>
