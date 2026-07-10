@@ -96,9 +96,11 @@ export default function PrivacyPage() {
             <div className="mt-4 space-y-4">
               <p>
                 We share information only as needed to run our business: with service providers who
-                help us operate our website, communications, and advertising — including our lead-management and quote-form provider (LeadConnector / GoHighLevel), which processes the details you submit through our contact form, along with analytics and
-                hosting providers); when required by law or to protect our rights; and in connection
-                with a business transfer. We do not sell your personal information to third parties.
+                help us operate our website, communications, scheduling, and advertising — including
+                our scheduling and customer-management software (Housecall Pro), which we use to
+                schedule jobs and keep track of customer requests, along with analytics and hosting
+                providers; when required by law or to protect our rights; and in connection with a
+                business transfer. We do not sell your personal information to third parties.
               </p>
             </div>
           </div>
@@ -176,11 +178,4 @@ export default function PrivacyPage() {
           </div>
 
           <div className="flex flex-wrap gap-3 pt-2">
-            <Link href="/contact" className="btn-primary">Get My Free Quote</Link>
-            <a href={telHref} className="btn-gold">Call {BRAND.phoneFormatted}</a>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
+            <Link href="/contact" class
