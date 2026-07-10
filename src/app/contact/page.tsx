@@ -78,6 +78,16 @@ export default function ContactPage() {
               <div className="mt-6">
                 <SnipeyForm city="home" service="junk-removal" heightPx={540} />
               </div>
+              <p className="mt-4 text-[12px] leading-relaxed text-muted">
+                This form is hosted and processed by our third-party lead-management
+                provider (LeadConnector / GoHighLevel) on our behalf. By submitting it
+                you agree that the details you provide may be handled by that provider
+                as described in our{' '}
+                <a href="/privacy" className="font-semibold text-purple hover:text-purple-dark">
+                  Privacy Policy
+                </a>
+                .
+              </p>
             </div>
           </div>
         </div>
