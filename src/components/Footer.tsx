@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { BRAND, telHref, smsHref, mailtoHref } from '@/lib/brand';
 import { serviceAreas } from '@/data/serviceAreas';
+import { CookiePreferencesButton } from './CookiePreferencesButton';
 
 export function Footer() {
   const topCities = [
@@ -121,6 +122,7 @@ export function Footer() {
           </span>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-gold">Privacy</Link>
+            <CookiePreferencesButton />
             <Link href="/accessibility" className="hover:text-gold">Accessibility</Link>
             <Link href="/sitemap.xml" className="hover:text-gold">Sitemap</Link>
           </div>
