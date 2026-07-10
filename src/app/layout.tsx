@@ -4,7 +4,8 @@ import Script from 'next/script';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { StickyMobileBar } from '@/components/StickyMobileBar';
-import { MetaPixel, ContactEventTracker } from '@/components/MetaPixel';
+import { ContactEventTracker } from '@/components/MetaPixel';
+import { CookieConsent } from '@/components/CookieConsent';
 import { buildLocalBusinessJsonLd } from '@/lib/metadata';
 import { BRAND } from '@/lib/brand';
 import './globals.css';
@@ -43,7 +44,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <head>
-        <MetaPixel />
         <Script
           id="ld-json-localbusiness"
           type="application/ld+json"
@@ -56,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1 pb-16 md:pb-0">{children}</main>
         <Footer />
         <StickyMobileBar />
+        <CookieConsent />
         <ContactEventTracker />
       </body>
     </html>
