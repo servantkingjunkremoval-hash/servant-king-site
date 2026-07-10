@@ -122,12 +122,7 @@ export function Footer() {
           </span>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-gold">Privacy</Link>
+            <Link href="/terms" className="hover:text-gold">Terms</Link>
             <CookiePreferencesButton />
             <Link href="/accessibility" className="hover:text-gold">Accessibility</Link>
-            <Link href="/sitemap.xml" className="hover:text-gold">Sitemap</Link>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
+            <Link href="/sitemap.xml" className="hover:text-gold">Sitemap<
