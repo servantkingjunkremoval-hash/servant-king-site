@@ -1,46 +1,20 @@
 import Script from 'next/script';
-import { TRACKING } from '@/lib/brand';
 
 /**
- * Injects the Meta Pixel base code + PageView event in <head>.
- * Loaded with strategy="afterInteractive" so it doesn't block first paint.
+ * The Meta Pixel base code is NO LONGER loaded here.
  *
- * Contact event tracking (tel:, sms:, mailto: clicks) is handled in
- * <ContactEventTracker /> which should be rendered at the end of <body>.
+ * For CIPA / CCPA compliance the pixel is loaded only AFTER the visitor
+ * opts in via <CookieConsent />. See src/components/CookieConsent.tsx.
+ *
+ * This file now only exports <ContactEventTracker />, which fires a
+ * 'Contact' event when a visitor clicks a phone / SMS / email link — but
+ * ONLY if the pixel has already been loaded (it checks for window.fbq),
+ * so it is safe to render unconditionally.
  */
-export function MetaPixel() {
-  const pixelId = TRACKING.metaPixelId;
-  return (
-    <>
-      <Script id="meta-pixel" strategy="afterInteractive">{`
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '${pixelId}');
-        fbq('track', 'PageView');
-      `}</Script>
-      <noscript>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          height="1"
-          width="1"
-          style={{ display: 'none' }}
-          src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
-          alt=""
-        />
-      </noscript>
-    </>
-  );
-}
 
 /**
  * Fires fbq('track','Contact') when a visitor clicks a phone, SMS, or email link.
- * Rebinds on route changes (covered by Next.js route events).
+ * No-op unless the visitor has consented and the pixel has loaded.
  */
 export function ContactEventTracker() {
   return (
