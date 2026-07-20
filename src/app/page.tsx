@@ -9,7 +9,7 @@ export default function HomePage() {
     <>
       {/* =================================================== HERO */}
       <section className="relative overflow-hidden bg-charcoal text-cream">
-        <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[46%] md:block">
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[46%] md:block">
           <Image
             src="/images/First%20truck%20ever%20with%20my%20daughter.jpg"
             alt="Chris with the first Servant King truck and his daughter"
@@ -20,7 +20,7 @@ export default function HomePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/70 to-transparent" />
         </div>
-        <div className="container-content relative py-20 md:py-32">
+        <div className="container-content relative z-10 py-20 md:py-32">
           <div className="max-w-3xl md:max-w-[50%]">
             <p className="eyebrow">FAMILY-OWNED · BAY AREA · CENTRAL VALLEY</p>
             <h1 className="h1 mt-4 text-white">
