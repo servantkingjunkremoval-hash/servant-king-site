@@ -9,19 +9,19 @@ export default function HomePage() {
     <>
       {/* =================================================== HERO */}
       <section className="relative overflow-hidden bg-charcoal text-cream">
-        <div className="absolute inset-0 -z-10">
+        <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[46%] md:block">
           <Image
-            src="/images/Our%20first%20truck%20wrap.jpg"
-            alt="Servant King Junk Removal truck"
+            src="/images/First%20truck%20ever%20with%20my%20daughter.jpg"
+            alt="Chris with the first Servant King truck and his daughter"
             fill
             priority
-            className="object-cover opacity-40"
-            sizes="100vw"
+            className="object-cover opacity-100"
+            sizes="(min-width: 768px) 46vw, 0px"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-charcoal/95 via-charcoal/85 to-purple-darker/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/70 to-transparent" />
         </div>
         <div className="container-content relative py-20 md:py-32">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl md:max-w-[50%]">
             <p className="eyebrow">FAMILY-OWNED · BAY AREA · CENTRAL VALLEY</p>
             <h1 className="h1 mt-4 text-white">
               Same-Day Junk Removal &amp; Demolition — From Stockton to Palo Alto.
