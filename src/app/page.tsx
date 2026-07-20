@@ -11,14 +11,14 @@ export default function HomePage() {
       <section className="relative overflow-hidden bg-charcoal text-cream">
         <div className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[46%] md:block">
           <Image
-            src="/images/First%20truck%20ever%20with%20my%20daughter.jpg"
-            alt="Chris with the first Servant King truck and his daughter"
+            src="/images/Our%20first%20truck%20wrap.jpg"
+            alt="The Servant King crew in front of the branded junk removal truck"
             fill
             priority
             className="object-cover opacity-100"
             sizes="(min-width: 768px) 46vw, 0px"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/35 to-transparent" />
         </div>
         <div className="container-content relative z-10 py-20 md:py-32">
           <div className="max-w-3xl md:max-w-[50%]">
