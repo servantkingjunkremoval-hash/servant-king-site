@@ -24,6 +24,8 @@ declare global {
   interface Window {
     __skPixelLoaded?: boolean;
     fbq?: (...args: unknown[]) => void;
+    __skVibeLoaded?: boolean;
+    vbpx?: (...args: unknown[]) => void;
   }
   interface Navigator {
     globalPrivacyControl?: boolean;
@@ -56,6 +58,20 @@ function loadMetaPixel() {
   document.head.appendChild(s);
 }
 
+function loadVibePixel() {
+  if (typeof window === 'undefined' || window.__skVibeLoaded) return;
+  window.__skVibeLoaded = true;
+
+  const s = document.createElement('script');
+  s.id = 'vibe-pixel';
+  s.innerHTML = `
+    !function(v,i,b,e,c,o){if(!v[c]){var s=v[c]=function(){s.process?s.process.apply(s,arguments):s.queue.push(arguments)};s.queue=[],s.b=1*new Date;var t=i.createElement(b);t.async=!0,t.src=e;var n=i.getElementsByTagName(b)[0];n.parentNode.insertBefore(t,n)}}(window,document,"script","https://s.vibe.co/vbpx.js","vbpx");
+    vbpx('init','HyKNua');
+    vbpx('event', 'page_view');
+  `;
+  document.head.appendChild(s);
+}
+
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
@@ -79,6 +95,7 @@ export function CookieConsent() {
 
     if (choice === 'granted') {
       loadMetaPixel();
+      loadVibePixel();
     } else if (choice !== 'denied') {
       setVisible(true);
     }
@@ -99,6 +116,7 @@ export function CookieConsent() {
       /* ignore */
     }
     loadMetaPixel();
+      loadVibePixel();
     setVisible(false);
   };
 
