@@ -55,7 +55,8 @@ export default function PrivacyPage() {
               </p>
               <p>
                 <strong>Cookies and analytics.</strong> With your consent, we use cookies and
-                third-party analytics and advertising tools, including the Meta (Facebook) Pixel, to
+                third-party analytics and advertising tools, including the Meta (Facebook) Pixel and Vibe (a third-party advertising and
+                analytics service), to
                 measure site traffic and the effectiveness of our advertising. These tools are not
                 loaded until you click &ldquo;Accept&rdquo; on our cookie banner. See
                 &ldquo;Cookies and your choices&rdquo; below.
