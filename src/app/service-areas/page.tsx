@@ -7,7 +7,7 @@ import { BRAND, telHref, smsHref } from '@/lib/brand';
 export const metadata: Metadata = buildMetadata({
   title: 'Service Areas — 57 Cities Across the Bay Area, Placer & Sacramento',
   description:
-    'Servant King Junk Removal & Demolition serves 57 cities across Bay Area, Placer, and Sacramento counties. Same-day service. CSLB C-21 licensed. 320+ 5-star reviews.',
+    'Servant King Junk Removal & Demolition serves 57 cities across Bay Area, Placer, and Sacramento counties. Same-day service. CSLB C-21 licensed. 350+ 5-star reviews.',
   path: '/service-areas'
 });
 
