@@ -1,4 +1,4 @@
-TEST_PASTE_OK// Server-rendered JSON-LD.
+// Server-rendered JSON-LD.
 //
 // IMPORTANT: do NOT replace this with next/script. `<Script strategy="afterInteractive">`
 // injects the tag client-side, so the structured data never appears in the raw HTML
