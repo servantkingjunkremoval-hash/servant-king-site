@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { BRAND } from '@/lib/brand';
+import { track, leadCategory } from '@/lib/track';
 
 /**
  * Native quote-request form. No third-party processor and no external iframe —
@@ -28,9 +29,10 @@ function buildMessage(f: {
   location: string;
   service: string;
   details: string;
+  source: string;
 }): string {
   const lines = [
-    'New quote request from servantkingdemolition.com:',
+    `New quote request from ${f.source}:`,
     `Name: ${f.name || '(not provided)'}`,
     `Phone: ${f.phone || '(not provided)'}`,
     `Location / ZIP: ${f.location || '(not provided)'}`,
@@ -47,15 +49,43 @@ export function QuoteForm() {
   const [service, setService] = useState<Service>('Junk Removal');
   const [details, setDetails] = useState('');
 
+  const source = typeof window !== 'undefined' ? window.location.hostname : BRAND.siteUrl;
+
+  /**
+   * Report the lead, then hand off to the visitor's messaging app.
+   *
+   * The handoff is deferred by a beat: assigning window.location.href can cancel
+   * the pixel's in-flight beacon, which is why form submissions previously
+   * recorded nothing at all. The delay is imperceptible and makes the event
+   * reliable.
+   */
+  const fireLeadThen = (go: () => void, method: 'text' | 'email') => {
+    track('Lead', {
+      content_category: leadCategory(service),
+      content_name: service,
+      method,
+      source
+    });
+    window.setTimeout(go, 150);
+  };
+
   const sendText = () => {
-    const body = encodeURIComponent(buildMessage({ name, phone, location, service, details }));
-    window.location.href = `sms:+1${BRAND.phone}?&body=${body}`;
+    const body = encodeURIComponent(
+      buildMessage({ name, phone, location, service, details, source })
+    );
+    fireLeadThen(() => {
+      window.location.href = `sms:+1${BRAND.phone}?&body=${body}`;
+    }, 'text');
   };
 
   const sendEmail = () => {
     const subject = encodeURIComponent(`Quote request — ${service}`);
-    const body = encodeURIComponent(buildMessage({ name, phone, location, service, details }));
-    window.location.href = `mailto:${BRAND.email}?subject=${subject}&body=${body}`;
+    const body = encodeURIComponent(
+      buildMessage({ name, phone, location, service, details, source })
+    );
+    fireLeadThen(() => {
+      window.location.href = `mailto:${BRAND.email}?subject=${subject}&body=${body}`;
+    }, 'email');
   };
 
   const inputClass =

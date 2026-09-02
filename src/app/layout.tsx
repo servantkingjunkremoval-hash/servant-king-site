@@ -5,6 +5,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { StickyMobileBar } from '@/components/StickyMobileBar';
 import { ContactEventTracker } from '@/components/MetaPixel';
+import { PageViewTracker } from '@/components/PageViewTracker';
 import { CookieConsent } from '@/components/CookieConsent';
 import { buildLocalBusinessJsonLd } from '@/lib/metadata';
 import { BRAND } from '@/lib/brand';
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StickyMobileBar />
         <CookieConsent />
         <ContactEventTracker />
+        <PageViewTracker />
       </body>
     </html>
   );
