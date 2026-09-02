@@ -57,7 +57,7 @@ export function Footer() {
             ))}
             <li className="pt-2">
               <Link className="font-semibold text-gold hover:text-gold-light" href="/service-areas">
-                See all 26 cities →
+                See all 57 cities →
               </Link>
             </li>
           </ul>
