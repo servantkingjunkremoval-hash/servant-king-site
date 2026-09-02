@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Script from 'next/script';
 import { notFound } from 'next/navigation';
 import { serviceAreas, getServiceAreaBySlug, getAllServiceAreaSlugs } from '@/data/serviceAreas';
 import { services } from '@/data/services';
 import { BRAND, telHref, smsHref } from '@/lib/brand';
-import { buildMetadata, buildLocalBusinessJsonLd } from '@/lib/metadata';
+import { buildMetadata, buildLocalBusinessJsonLd, buildBreadcrumbJsonLd } from '@/lib/metadata';
+import { JsonLd } from '@/components/JsonLd';
 import { ServicesCarousel } from '@/components/ServicesCarousel';
 
 export function generateStaticParams() {
@@ -29,18 +29,19 @@ export default async function ServiceAreaPage({ params }: { params: Promise<{ sl
   if (!area) notFound();
 
   const jsonLd = buildLocalBusinessJsonLd({ city: area.title, county: area.county, slug: area.slug });
+  const areaBreadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Service Areas', path: '/service-areas' },
+    { name: area.title, path: `/service-areas/${area.slug}` }
+  ]);
   const relatedAreas = serviceAreas
     .filter((sa) => sa.county === area.county && sa.slug !== area.slug)
     .slice(0, 6);
 
   return (
     <>
-      <Script
-        id={`ld-json-area-${slug}`}
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd id={`ld-json-area-${area.slug}`} data={jsonLd} />
+      <JsonLd id={`ld-json-area-breadcrumb-${area.slug}`} data={areaBreadcrumbJsonLd} />
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-charcoal text-cream">
