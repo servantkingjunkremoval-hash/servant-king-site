@@ -4,6 +4,42 @@ import { BRAND, telHref, smsHref } from '@/lib/brand';
 import { serviceAreas } from '@/data/serviceAreas';
 import { ServicesCarousel } from '@/components/ServicesCarousel';
 
+
+export default function HomePage() {
+  return (
+    <>
+      {/* =================================================== HERO */}
+      <section className="relative overflow-hidden bg-charcoal text-cream">
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[46%] md:block">
+          <Image
+            src="/images/Our%20first%20truck%20wrap.jpg"
+            alt="The Servant King crew in front of the branded junk removal truck"
+            fill
+            priority
+            className="object-cover opacity-100"
+            sizes="(min-width: 768px) 46vw, 0px"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/35 to-transparent" />
+        </div>
+        <div className="container-content relative z-10 py-20 md:py-32">
+          <div className="max-w-3xl md:max-w-[50%]">
+            <p className="eyebrow">FAMILY-OWNED · BAY AREA · CENTRAL VALLEY</p>
+            <h1 className="h1 mt-4 text-white">
+              Same-Day Junk Removal &amp; Demolition — From Stockton to Palo Alto.
+            </h1>
+            <p className="lede mt-6 text-cream/90">
+              Family-owned, faith-rooted crew that treats your home like it&apos;s ours. Free on-site estimate. No obligation.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a href={telHref} className="btn-primary">
+                Call {BRAND.phoneFormatted}
+              </a>
+              <a href={smsHref()} className="btn-gold">import Link from 'next/link';
+import Image from 'next/image';
+import { BRAND, telHref, smsHref } from '@/lib/brand';
+import { serviceAreas } from '@/data/serviceAreas';
+import { ServicesCarousel } from '@/components/ServicesCarousel';
+
 export default function HomePage() {
   return (
     <>
