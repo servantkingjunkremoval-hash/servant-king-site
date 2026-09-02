@@ -88,6 +88,24 @@ export default function LocationsPage() {
                   <dt className="eyebrow">License</dt>
                   <dd className="mt-1 text-[16px] text-charcoal">{BRAND.licenses.cslb}</dd>
                 </div>
+                {loc.gbpUrl && (
+                  <div className="sm:col-span-2">
+                    <dt className="eyebrow">Google Business Profile</dt>
+                    <dd className="mt-1 text-[16px] text-charcoal">
+                      {/* A real outbound link to this location's own profile. The same
+                          URL is emitted as sameAs/hasMap on this branch's schema node,
+                          so the page and the profile resolve to one place. */}
+                      <a
+                        href={loc.gbpUrl}
+                        target="_blank"
+                        rel="noopener"
+                        className="font-semibold text-purple hover:underline"
+                      >
+                        See {loc.city} reviews and directions on Google
+                      </a>
+                    </dd>
+                  </div>
+                )}
               </dl>
             </article>
           ))}
