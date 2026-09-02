@@ -38,14 +38,14 @@ export const BRAND = {
   ],
   social: {
     facebook: 'https://www.facebook.com/ServantKingJunkRemoval',
-    instagram: 'https://www.instagram.com/servantkingjunkremoval'
+    instagram: 'https://www.instagram.com/servantking_'
   },
   // Verified third-party entity profiles. These become schema.org `sameAs` values,
   // which is how answer engines resolve "Servant King" to one real business instead
   // of treating each mention as an unrelated string.
   sameAs: [
     'https://www.facebook.com/ServantKingJunkRemoval',
-    'https://www.instagram.com/servantkingjunkremoval',
+    'https://www.instagram.com/servantking_',
     'https://www.yelp.com/biz/servant-king-junk-removal-stockton-2',
     'https://nextdoor.com/pages/servant-king-junk-removal-stockton-ca/',
     'https://www.zoominfo.com/c/servant-king-junk-removal/557011151',
