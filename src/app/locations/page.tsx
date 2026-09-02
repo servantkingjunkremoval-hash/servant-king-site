@@ -123,7 +123,7 @@ export default function LocationsPage() {
         <div className="container-content text-center">
           <h2 className="h2">Not sure which location covers you?</h2>
           <p className="lede mt-4 text-charcoal">
-            One number reaches all three. Or check the{' '}
+            One number reaches all four. Or check the{' '}
             <Link href="/service-areas" className="font-semibold text-purple hover:underline">
               full service area list
             </Link>
