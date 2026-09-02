@@ -19,7 +19,7 @@ const faqGroups = [
       },
       {
         q: 'What service area do you cover?',
-        a: 'The Bay Area (San Francisco, Peninsula, East Bay, South Bay), Sacramento and Placer corridor, and the Central Valley including Stockton, Modesto, Manteca, Tracy. 44 cities have dedicated service-area pages \u2014 if yours isn\u2019t there, text us and we\u2019ll quote it anyway.'
+        a: 'The Bay Area (San Francisco, Peninsula, East Bay, South Bay), Sacramento and Placer corridor, and the Central Valley including Stockton, Modesto, Manteca, Tracy. 57 cities have dedicated service-area pages \u2014 if yours isn\u2019t there, text us and we\u2019ll quote it anyway.'
       },
       {
         q: 'Can I be away while you do the job?',
