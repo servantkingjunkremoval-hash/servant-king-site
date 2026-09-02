@@ -366,7 +366,7 @@ export const serviceAreas: ServiceArea[] = [
     localNotes: 'We cover the whole 209: Brookside, Lincoln Village, Spanos Park, Weston Ranch, Pacific Avenue corridor, Lakeview, Country Club, Quail Lakes, and downtown. Our base of operations is here, so on most jobs we can be on-site within hours of your call. Licensed C-21 demo work for residential and commercial properties throughout San Joaquin County.',
     neighborhoods: ['Brookside', 'Lincoln Village', 'Spanos Park', 'Weston Ranch', 'Quail Lakes', 'Country Club', 'Pacific Avenue', 'Lakeview'],
     seoTitle: 'Junk Removal Stockton CA | Servant King — Same-Day Hometown Service',
-    metaDescription: 'Family-owned junk removal and demolition in Stockton, CA — our home base. Same-day service. CSLB C-21 #1142322. 320+ 5-star reviews. Call 209-938-7407.'
+    metaDescription: 'Family-owned junk removal and demolition in Stockton, CA — our home base. Same-day service. CSLB C-21 #1142322. 350+ 5-star reviews. Call 209-938-7407.'
   },
   {
     slug: 'modesto',
