@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import Script from 'next/script';
 import { notFound } from 'next/navigation';
 import { services, getServiceBySlug, getAllServiceSlugs } from '@/data/services';
 import { BRAND, telHref, smsHref } from '@/lib/brand';
-import { buildMetadata, buildLocalBusinessJsonLd } from '@/lib/metadata';
+import { buildMetadata, buildLocalBusinessJsonLd, buildFaqPageJsonLd, buildBreadcrumbJsonLd } from '@/lib/metadata';
+import { JsonLd } from '@/components/JsonLd';
 import { ServiceIcon } from '@/components/ServiceIcon';
 
 export function generateStaticParams() {
@@ -37,16 +37,20 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     serviceType: service.title
   };
 
+  const faqJsonLd = buildFaqPageJsonLd(service.faqs, `${BRAND.siteUrl}/services/${slug}`);
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: service.title, path: `/services/${slug}` }
+  ]);
+
   const relatedServices = services.filter((s) => s.slug !== slug).slice(0, 3);
 
   return (
     <>
-      <Script
-        id={`ld-json-service-${slug}`}
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd id={`ld-json-service-${slug}`} data={jsonLd} />
+      <JsonLd id={`ld-json-service-faq-${slug}`} data={faqJsonLd} />
+      <JsonLd id={`ld-json-service-breadcrumb-${slug}`} data={breadcrumbJsonLd} />
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-charcoal text-cream">
