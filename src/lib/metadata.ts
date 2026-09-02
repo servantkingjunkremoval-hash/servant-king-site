@@ -95,6 +95,7 @@ export function buildBranchJsonLd(loc: Location) {
       name: c
     })),
     parentOrganization: { '@id': `${BRAND.siteUrl}#organization` },
+    ...(loc.gbpUrl && { sameAs: [loc.gbpUrl], hasMap: loc.gbpUrl }),
     serviceType: SERVICE_TYPES,
     ...(loc.isPrimary && {
       aggregateRating: {
