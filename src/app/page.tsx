@@ -4,42 +4,6 @@ import { BRAND, telHref, smsHref } from '@/lib/brand';
 import { serviceAreas } from '@/data/serviceAreas';
 import { ServicesCarousel } from '@/components/ServicesCarousel';
 
-
-export default function HomePage() {
-  return (
-    <>
-      {/* =================================================== HERO */}
-      <section className="relative overflow-hidden bg-charcoal text-cream">
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[46%] md:block">
-          <Image
-            src="/images/Our%20first%20truck%20wrap.jpg"
-            alt="The Servant King crew in front of the branded junk removal truck"
-            fill
-            priority
-            className="object-cover opacity-100"
-            sizes="(min-width: 768px) 46vw, 0px"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/35 to-transparent" />
-        </div>
-        <div className="container-content relative z-10 py-20 md:py-32">
-          <div className="max-w-3xl md:max-w-[50%]">
-            <p className="eyebrow">FAMILY-OWNED · BAY AREA · CENTRAL VALLEY</p>
-            <h1 className="h1 mt-4 text-white">
-              Same-Day Junk Removal &amp; Demolition — From Stockton to Palo Alto.
-            </h1>
-            <p className="lede mt-6 text-cream/90">
-              Family-owned, faith-rooted crew that treats your home like it&apos;s ours. Free on-site estimate. No obligation.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a href={telHref} className="btn-primary">
-                Call {BRAND.phoneFormatted}
-              </a>
-              <a href={smsHref()} className="btn-gold">import Link from 'next/link';
-import Image from 'next/image';
-import { BRAND, telHref, smsHref } from '@/lib/brand';
-import { serviceAreas } from '@/data/serviceAreas';
-import { ServicesCarousel } from '@/components/ServicesCarousel';
-
 export default function HomePage() {
   return (
     <>
@@ -163,7 +127,7 @@ export default function HomePage() {
                   'Same-day & next-day availability',
                   'Flat-rate quotes — no hourly surprises',
                   'Uniformed, insured, background-checked crew',
-                  '320+ 5-star Google reviews'
+                  '350+ 5-star Google reviews'
                 ].map((h) => (
                   <li key={h} className="flex items-start gap-2">
                     <span className="mt-1 inline-block h-2 w-2 shrink-0 rounded-full bg-gold" />
@@ -227,7 +191,7 @@ export default function HomePage() {
         <div className="container-content">
           <div className="mx-auto max-w-narrow text-center">
             <p className="eyebrow">Proof of Work</p>
-            <h2 className="h2 mt-3">Rated 5 Stars by 320+ Bay Area &amp; Central Valley Families.</h2>
+            <h2 className="h2 mt-3">Rated 5 Stars by 350+ Bay Area &amp; Central Valley Families.</h2>
             <p className="lede muted mt-4 italic">
               Every single review is real, verified, and on Google — nothing cherry-picked.
             </p>
@@ -272,7 +236,7 @@ export default function HomePage() {
           </div>
           <p className="mt-12 text-center text-[15px] font-semibold">
             <a href="https://g.co/kgs/servantkingdemolition" className="text-purple underline hover:text-purple-dark">
-              Read all 320+ reviews on Google →
+              Read all 350+ reviews on Google →
             </a>
           </p>
         </div>
@@ -289,7 +253,7 @@ export default function HomePage() {
                 Every load we haul comes back to our own processing facility first. We sort. We donate what&apos;s still useful. We recycle what isn&apos;t. Landfill is the last resort — not the first.
               </p>
               <p>
-                Our donation partners take the furniture, appliances, housewares, and building materials worth a second life. What can&apos;t be donated gets properly recycled or disposed of. It&apos;s how a junk removal company ought to work — and how we&apos;ve built our reputation with 320+ families.
+                Our donation partners take the furniture, appliances, housewares, and building materials worth a second life. What can&apos;t be donated gets properly recycled or disposed of. It&apos;s how a junk removal company ought to work — and how we&apos;ve built our reputation with 350+ families.
               </p>
               <p className="italic text-purple">
                 Want to know what happened to your items? Ask us for a donation summary — we&apos;ll tell you exactly where everything went.
@@ -345,7 +309,7 @@ export default function HomePage() {
                 Servant King started in Stockton during the pandemic as a hauling and junk removal crew. The name came from a simple idea: leadership means service, and a servant-king treats every home like it&apos;s his own.
               </p>
               <p>
-                Over the next four years we grew into a licensed CSLB C-21 Demolition Contractor, a Certified Tire Hauler, and a partner of choice for general contractors across the Bay Area. But the idea never changed. Same family-owned crew. Same focus on doing right by the homeowner. Same commitment to earning every one of our 320+ 5-star reviews.
+                Over the next four years we grew into a licensed CSLB C-21 Demolition Contractor, a Certified Tire Hauler, and a partner of choice for general contractors across the Bay Area. But the idea never changed. Same family-owned crew. Same focus on doing right by the homeowner. Same commitment to earning every one of our 350+ 5-star reviews.
               </p>
               <p>
                 If that sounds like the kind of crew you want in your driveway, text us a photo of what needs to go. We&apos;ll take it from there.
@@ -406,7 +370,7 @@ export default function HomePage() {
               The Bay Area Homeowner&apos;s Declutter &amp; Estate Clean-Out Guide.
             </h2>
             <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-cream/90">
-              A 10-page field guide we built from 320+ cleanouts across Palo Alto, Atherton, Walnut Creek, and Folsom. What to keep, what to donate, what to haul, and how to prep for a pro crew — whether that&apos;s us or someone else. Free PDF, no spam.
+              A 10-page field guide we built from 350+ cleanouts across Palo Alto, Atherton, Walnut Creek, and Folsom. What to keep, what to donate, what to haul, and how to prep for a pro crew — whether that&apos;s us or someone else. Free PDF, no spam.
             </p>
           </div>
           <div className="md:col-span-2">
