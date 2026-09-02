@@ -5,9 +5,9 @@ import { buildMetadata, buildBreadcrumbJsonLd } from '@/lib/metadata';
 import { JsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Our Locations — Menlo Park, San Ramon & Lathrop',
+  title: 'Our Locations — Menlo Park, San Ramon, Lathrop & Stockton',
   description:
-    'Servant King operates from three California locations: Menlo Park on the Peninsula, San Ramon in the East Bay, and Lathrop in the Central Valley, with the fleet yarded in Stockton.',
+    'Servant King operates from four California locations: Menlo Park on the Peninsula, San Ramon in the East Bay, and Lathrop and Stockton in the Central Valley.',
   path: '/locations'
 });
 
@@ -28,11 +28,11 @@ export default function LocationsPage() {
       <section className="bg-charcoal py-14 text-cream md:py-20">
         <div className="container-content max-w-narrow">
           <p className="eyebrow text-gold">Locations</p>
-          <h1 className="h1 mt-3 text-white">Three Locations. One Crew Standard.</h1>
+          <h1 className="h1 mt-3 text-white">Four Locations. One Crew Standard.</h1>
           <p className="lede mt-5 text-cream/85">
-            Servant King runs out of Menlo Park, San Ramon, and Lathrop, with the fleet
-            yarded in Stockton. Same flat-rate pricing, same uniformed crew, same
-            donation-first policy at every one.
+            Servant King runs out of Menlo Park, San Ramon, Lathrop, and Stockton.
+            Same flat-rate pricing, same uniformed crew, same donation-first policy at
+            every one.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href={telHref} className="btn-gold-filled">
