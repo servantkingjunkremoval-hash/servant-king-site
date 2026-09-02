@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { BRAND, telHref, smsHref } from '@/lib/brand';
-import { buildMetadata } from '@/lib/metadata';
+import { buildMetadata, buildFaqPageJsonLd, buildBreadcrumbJsonLd } from '@/lib/metadata';
+import { JsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = buildMetadata({
   title: 'FAQ — Servant King Junk Removal & Demolition',
@@ -131,8 +132,20 @@ const faqGroups = [
 ];
 
 export default function FAQPage() {
+  // Flatten every group into one FAQPage entity so answer engines can lift any
+  // pair directly. This is the same content already rendered below — schema and
+  // visible copy must stay identical or the markup is considered deceptive.
+  const allFaqs = faqGroups.flatMap((g) => g.items.map((i) => ({ question: i.q, answer: i.a })));
+  const faqJsonLd = buildFaqPageJsonLd(allFaqs, `${BRAND.siteUrl}/faq`);
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'FAQ', path: '/faq' }
+  ]);
+
   return (
     <>
+      <JsonLd id="ld-json-faq" data={faqJsonLd} />
+      <JsonLd id="ld-json-faq-breadcrumb" data={breadcrumbJsonLd} />
       <section className="bg-charcoal py-16 text-cream md:py-20">
         <div className="container-content text-center">
           <p className="eyebrow">FAQ</p>

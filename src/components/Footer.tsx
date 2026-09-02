@@ -121,6 +121,8 @@ export function Footer() {
             © {new Date().getFullYear()} {BRAND.name}. {BRAND.licenses.cslb} · {BRAND.licenses.tireHauler} · Licensed & Insured.
           </span>
           <div className="flex gap-4">
+            <Link href="/guides" className="hover:text-gold">Guides</Link>
+            <Link href="/locations" className="hover:text-gold">Locations</Link>
             <Link href="/privacy" className="hover:text-gold">Privacy</Link>
             <Link href="/terms" className="hover:text-gold">Terms</Link>
             <CookiePreferencesButton />

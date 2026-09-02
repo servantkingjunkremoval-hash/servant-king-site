@@ -51,7 +51,7 @@ export const services: Service[] = [
     heroHeadline: 'Same-Day Junk Removal — From Stockton to Palo Alto.',
     heroSubhead: 'Flat-rate quotes. Uniformed, insured crew. Everything hauled, sorted, and donated when we can.',
     seoTitle: 'Junk Removal Bay Area | Same-Day Service | Servant King',
-    metaDescription: 'Family-owned junk removal serving the Bay Area, Placer, and Sacramento. Flat-rate, same-day, insured, 320+ 5-star reviews. Call 209-938-7407.',
+    metaDescription: 'Family-owned junk removal serving the Bay Area, Placer, and Sacramento. Flat-rate, same-day, insured, 350+ 5-star reviews. Call 209-938-7407.',
     intro: "Junk removal is our primary service and the thing we've been perfecting since 2021. We handle everything from a single mattress pickup to a full estate cleanout — with the same family-owned crew, same flat-rate pricing, and same policy of trying to donate or recycle before anything hits the landfill.",
     highlights: [
       'Same-day availability when the slot is open',
@@ -165,7 +165,7 @@ export const services: Service[] = [
     heroHeadline: 'Respectful, Discreet Estate Cleanouts.',
     heroSubhead: 'Full-property cleanouts for estates, probate, downsizing, and inherited homes. Donation-first, on your timeline.',
     seoTitle: 'Estate Cleanout Services Bay Area | Servant King',
-    metaDescription: 'Respectful, full-property estate cleanouts across the Bay Area. Probate, downsizing, inherited homes. 320+ 5-star reviews. Call 209-938-7407.',
+    metaDescription: 'Respectful, full-property estate cleanouts across the Bay Area. Probate, downsizing, inherited homes. 350+ 5-star reviews. Call 209-938-7407.',
     intro: "Estate cleanouts are our most emotionally sensitive work, and we approach every one with the respect the family deserves. Whether it's a probate situation, a parent downsizing, or an inherited home being prepped for sale, we coordinate with the executor, family, or realtor to clear the property on your timeline — with donation receipts and itemized documentation when requested.",
     highlights: [
       'Experienced with probate and executor protocols',
@@ -545,7 +545,7 @@ export const services: Service[] = [
     heroHeadline: 'Whole Home Cleanouts — Top to Bottom, in One Trip.',
     heroSubhead: 'Clearing a parents house. Prepping for sale. Foreclosure or eviction recovery. We handle it all in one job.',
     seoTitle: 'Whole Home Cleanout Services Bay Area | Servant King',
-    metaDescription: 'Whole-house cleanouts for moves, sales, downsizing, and inherited homes. Family-owned. 320+ 5-star reviews. Call 209-938-7407.',
+    metaDescription: 'Whole-house cleanouts for moves, sales, downsizing, and inherited homes. Family-owned. 350+ 5-star reviews. Call 209-938-7407.',
     intro: 'Whole home cleanouts are the deepest version of what we do — every closet, every drawer, every shelf, every corner of the garage and shed. Servant King handles these cleanly: a free on-site walkthrough first, a flat-rate quote, then a 1-2 day job (3+ for severely accumulated properties) where we leave the property broom-swept and ready for the next chapter.',
     highlights: [
       'Free on-site walkthrough and flat-rate quote',

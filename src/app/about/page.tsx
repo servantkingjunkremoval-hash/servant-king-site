@@ -7,7 +7,7 @@ import { buildMetadata } from '@/lib/metadata';
 export const metadata: Metadata = buildMetadata({
   title: 'About Servant King — Family-Owned Junk Removal & Demolition',
   description:
-    'Family-owned, faith-rooted junk removal and demolition serving the Bay Area and Central Valley since 2021. CSLB C-21 licensed. 320+ 5-star reviews.',
+    'Family-owned, faith-rooted junk removal and demolition serving the Bay Area and Central Valley since 2021. CSLB C-21 licensed. 350+ 5-star reviews.',
   path: '/about'
 });
 
@@ -22,7 +22,7 @@ export default function AboutPage() {
             Family-Owned Junk Removal &amp; Demolition — Built on Service, Not Shortcuts.
           </h1>
           <p className="lede mt-5 mx-auto max-w-3xl text-cream/85">
-            From Stockton to Palo Alto. CSLB C-21 Licensed. 320+ 5-Star Reviews. Same Crew Since Day One.
+            From Stockton to Palo Alto. CSLB C-21 Licensed. 350+ 5-Star Reviews. Same Crew Since Day One.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a href={telHref} className="btn-gold-filled">Call {BRAND.phoneFormatted}</a>
@@ -103,7 +103,7 @@ export default function AboutPage() {
                 <li>· Certified Tire Hauler (CalRecycle)</li>
                 <li>· Fully Insured — General Liability + Workers&apos; Comp</li>
                 <li>· DIR-Registered for Public Works Prevailing Wage</li>
-                <li>· 320+ Five-Star Google Reviews</li>
+                <li>· 350+ Five-Star Google Reviews</li>
               </ul>
             </div>
 

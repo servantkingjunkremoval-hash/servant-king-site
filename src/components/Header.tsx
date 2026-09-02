@@ -22,6 +22,8 @@ const howItWorksItems: NavItem[] = [
   { label: 'How It Works', href: '/how-it-works' },
   { label: 'Where Your Stuff Goes', href: '/where-your-stuff-goes' },
   { label: 'How We Price', href: '/how-we-price' },
+  { label: 'Guides', href: '/guides' },
+  { label: 'Locations', href: '/locations' },
   { label: 'FAQ', href: '/faq' },
   { label: 'About Us', href: '/about' }
 ];
