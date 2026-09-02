@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
-import Script from 'next/script';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { StickyMobileBar } from '@/components/StickyMobileBar';
 import { ContactEventTracker } from '@/components/MetaPixel';
 import { PageViewTracker } from '@/components/PageViewTracker';
 import { CookieConsent } from '@/components/CookieConsent';
-import { buildLocalBusinessJsonLd } from '@/lib/metadata';
+import { buildEntityGraphJsonLd } from '@/lib/metadata';
+import { JsonLd } from '@/components/JsonLd';
 import { BRAND } from '@/lib/brand';
 import './globals.css';
 
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: '%s | Servant King'
   },
   description:
-    'Family-owned junk removal & demolition serving the Bay Area, Placer, and Sacramento. CSLB C-21 licensed. 320+ 5-star reviews. Same-day service. Text or call 209-938-7407.',
+    'Family-owned junk removal & demolition serving the Bay Area, Placer, and Sacramento. CSLB C-21 licensed. 350+ 5-star reviews. Same-day service. Text or call 209-938-7407.',
   icons: { icon: '/favicon.ico' },
   openGraph: {
     type: 'website',
@@ -41,16 +41,11 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const jsonLd = buildLocalBusinessJsonLd();
+  const jsonLd = buildEntityGraphJsonLd();
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <head>
-        <Script
-          id="ld-json-localbusiness"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd id="ld-json-entity-graph" data={jsonLd} />
       </head>
       <body className="min-h-screen flex flex-col">
         <Header />
