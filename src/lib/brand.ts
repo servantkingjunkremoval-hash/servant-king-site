@@ -74,10 +74,11 @@ export const BRAND = {
  * because listing a site with no customer-facing presence as a business location
  * invites a GBP suspension. All four current sites are staffed branches.
  *
- * TODO(Chris): ZIPs for San Ramon and Stockton are unconfirmed, and the coordinates
- * for the three non-HQ sites are city centroids rather than the actual addresses.
- * `postalCode` is omitted rather than guessed. A wrong lat/lng actively hurts local
- * ranking, so send the real ones (or confirm the ZIPs) and these get swapped in.
+ * Addresses and ZIPs are confirmed against each location's Google Business Profile.
+ *
+ * TODO(Chris): coordinates for the three non-HQ sites are still city centroids, not
+ * the actual sites — flagged with `coordinatesArePlaceholder`. A wrong lat/lng hurts
+ * local ranking. Menlo Park and Stockton still need their `gbpUrl` filled in.
  */
 export type Location = {
   id: string;
@@ -94,6 +95,13 @@ export type Location = {
   longitude: number;
   /** Approximate — replace when the real site coordinates are known. */
   coordinatesArePlaceholder: boolean;
+  /**
+   * This location's own Google Business Profile, as a stable maps.google.com/?cid=
+   * URL. Emitted as `sameAs` on that branch's LocalBusiness node and linked from
+   * /locations, so Google and the answer engines can tie the page, the schema and
+   * the profile together as one place instead of three unrelated records.
+   */
+  gbpUrl?: string;
   blurb: string;
   countiesServed: string[];
 };
@@ -123,9 +131,12 @@ export const LOCATIONS: Location[] = [
     label: 'San Ramon',
     role: 'branch',
     isPrimary: false,
-    street: '2010 Crow Canyon Road',
+    street: '2010 Crow Canyon Place',
+    suite: 'Suite 100',
     state: 'CA',
+    zip: '94583',
     country: 'US',
+    gbpUrl: 'https://maps.google.com/?cid=8743281642351882757',
     latitude: 37.7799,
     longitude: -121.978,
     coordinatesArePlaceholder: true,
@@ -141,7 +152,9 @@ export const LOCATIONS: Location[] = [
     isPrimary: false,
     street: '3085 Garden Farms Avenue',
     state: 'CA',
+    zip: '95330',
     country: 'US',
+    gbpUrl: 'https://maps.google.com/?cid=3586641254274458822',
     latitude: 37.8227,
     longitude: -121.2766,
     coordinatesArePlaceholder: true,
@@ -157,6 +170,7 @@ export const LOCATIONS: Location[] = [
     isPrimary: false,
     street: '1221 N El Dorado Street',
     state: 'CA',
+    zip: '95202',
     country: 'US',
     latitude: 37.9577,
     longitude: -121.2908,
