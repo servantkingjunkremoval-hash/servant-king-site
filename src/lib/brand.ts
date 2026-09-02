@@ -69,9 +69,10 @@ export const BRAND = {
  * resolve "junk removal near me" through location entities — so each one needs its
  * own LocalBusiness node with its own @id, not a single HQ address doing all the work.
  *
- * `role` distinguishes a customer-facing branch from the truck yard. Only branches
- * are emitted as LocalBusiness; the yard is emitted as a Place the fleet operates
- * from, because listing a yard as a business location invites a GBP suspension.
+ * `role` distinguishes a customer-facing branch from a yard-only site. Only branches
+ * are emitted as LocalBusiness; a 'yard' entry would be emitted as a Place instead,
+ * because listing a site with no customer-facing presence as a business location
+ * invites a GBP suspension. All four current sites are staffed branches.
  *
  * TODO(Chris): ZIPs for San Ramon and Stockton are unconfirmed, and the coordinates
  * for the three non-HQ sites are city centroids rather than the actual addresses.
@@ -149,10 +150,10 @@ export const LOCATIONS: Location[] = [
     countiesServed: ['San Joaquin County', 'Stanislaus County']
   },
   {
-    id: 'stockton-yard',
+    id: 'stockton',
     city: 'Stockton',
-    label: 'Stockton Truck Yard',
-    role: 'yard',
+    label: 'Stockton',
+    role: 'branch',
     isPrimary: false,
     street: '1221 N El Dorado Street',
     state: 'CA',
@@ -161,7 +162,7 @@ export const LOCATIONS: Location[] = [
     longitude: -121.2908,
     coordinatesArePlaceholder: true,
     blurb:
-      'Where the fleet is parked and dispatched from. Not a customer-facing office — Central Valley jobs are booked through the Lathrop location.',
+      'Our Stockton location, with a meeting room and working space for customers and contractors, and the yard the fleet is parked and dispatched from. Covers Stockton, Lodi, Manteca, Tracy, and the surrounding San Joaquin County communities.',
     countiesServed: ['San Joaquin County']
   }
 ];
