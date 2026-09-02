@@ -334,7 +334,7 @@ export default function HomePage() {
             <p className="eyebrow">Where We Work</p>
             <h2 className="h2 mt-3">We Serve the Bay Area, Placer, and Sacramento.</h2>
             <p className="lede muted mt-4 italic">
-              Licensed, insured, and on-time in all 26 cities below. Click your city for local pricing and estate-specific services.
+              Licensed, insured, and on-time in all 57 cities below. Click your city for local pricing and estate-specific services.
             </p>
           </div>
           <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
