@@ -6,6 +6,8 @@ import { services } from '@/data/services';
 import { BRAND, telHref, smsHref } from '@/lib/brand';
 import { buildMetadata, buildLocalBusinessJsonLd, buildBreadcrumbJsonLd } from '@/lib/metadata';
 import { JsonLd } from '@/components/JsonLd';
+import { AnswerSummary, FactsTable, BookingSteps } from '@/components/AnswerBlock';
+import { areaAnswer, areaFacts, BOOKING_STEPS } from '@/lib/answerBlocks';
 import { ServicesCarousel } from '@/components/ServicesCarousel';
 
 export function generateStaticParams() {
@@ -82,13 +84,22 @@ export default async function ServiceAreaPage({ params }: { params: Promise<{ sl
         </div>
       </section>
 
+      {/* ANSWER BLOCK — direct answer with figures, first content after the H1 */}
+      <AnswerSummary heading="Short Answer" answer={areaAnswer(area)} />
+
       {/* INTRO */}
-      <section className="bg-white py-16 md:py-20">
+      <section className="bg-white pb-16 md:pb-20">
         <div className="container-content max-w-narrow">
           <h2 className="h2">{area.title} Junk Removal Done Right</h2>
           <p className="mt-5 text-[18px] leading-relaxed text-charcoal md:text-[20px]">{area.intro}</p>
         </div>
       </section>
+
+      {/* FACTS TABLE — comparative data in a real <table> */}
+      <FactsTable caption={`Junk Removal in ${area.title} at a Glance`} rows={areaFacts(area)} />
+
+      {/* ORDERED STEPS — the booking sequence in a real <ol> */}
+      <BookingSteps heading={`How to Book a ${area.title} Job`} steps={BOOKING_STEPS} />
 
       {/* NEIGHBORHOODS */}
       <section className="bg-cream py-16">
