@@ -78,7 +78,9 @@ export const BRAND = {
  *
  * TODO(Chris): coordinates for the three non-HQ sites are still city centroids, not
  * the actual sites — flagged with `coordinatesArePlaceholder`. A wrong lat/lng hurts
- * local ranking. Menlo Park and Stockton still need their `gbpUrl` filled in.
+ * local ranking. All four `gbpUrl` values are verified against each profile's own
+ * `1s0x0:<cid>` link — the other /maps/place URL on those pages is a shared brand
+ * link that is identical across locations and must NOT be used per-location.
  */
 export type Location = {
   id: string;
@@ -118,6 +120,7 @@ export const LOCATIONS: Location[] = [
     state: 'CA',
     zip: '94025',
     country: 'US',
+    gbpUrl: 'https://maps.google.com/?cid=3586641254274458822',
     latitude: 37.4814016,
     longitude: -122.174109,
     coordinatesArePlaceholder: false,
@@ -154,7 +157,7 @@ export const LOCATIONS: Location[] = [
     state: 'CA',
     zip: '95330',
     country: 'US',
-    gbpUrl: 'https://maps.google.com/?cid=3586641254274458822',
+    gbpUrl: 'https://maps.google.com/?cid=12178289965899810438',
     latitude: 37.8227,
     longitude: -121.2766,
     coordinatesArePlaceholder: true,
@@ -172,6 +175,7 @@ export const LOCATIONS: Location[] = [
     state: 'CA',
     zip: '95202',
     country: 'US',
+    gbpUrl: 'https://maps.google.com/?cid=10400907704616522833',
     latitude: 37.9577,
     longitude: -121.2908,
     coordinatesArePlaceholder: true,
