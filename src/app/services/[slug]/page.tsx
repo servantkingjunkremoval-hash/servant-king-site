@@ -6,6 +6,8 @@ import { services, getServiceBySlug, getAllServiceSlugs } from '@/data/services'
 import { BRAND, telHref, smsHref } from '@/lib/brand';
 import { buildMetadata, buildLocalBusinessJsonLd, buildFaqPageJsonLd, buildBreadcrumbJsonLd } from '@/lib/metadata';
 import { JsonLd } from '@/components/JsonLd';
+import { AnswerSummary, FactsTable, BookingSteps } from '@/components/AnswerBlock';
+import { serviceAnswer, serviceFacts, BOOKING_STEPS } from '@/lib/answerBlocks';
 import { ServiceIcon } from '@/components/ServiceIcon';
 
 export function generateStaticParams() {
@@ -97,12 +99,21 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
+      {/* ANSWER BLOCK — direct answer with figures, first content after the H1 */}
+      <AnswerSummary heading="Short Answer" answer={serviceAnswer(service)} />
+
       {/* INTRO */}
-      <section className="bg-white py-16 md:py-20">
+      <section className="bg-white pb-16 md:pb-20">
         <div className="container-content max-w-narrow">
           <p className="text-[18px] leading-relaxed text-charcoal md:text-[20px]">{service.intro}</p>
         </div>
       </section>
+
+      {/* FACTS TABLE — comparative data in a real <table> */}
+      <FactsTable caption={`${service.title} at a Glance`} rows={serviceFacts(service)} />
+
+      {/* ORDERED STEPS — the booking sequence in a real <ol> */}
+      <BookingSteps heading={`How to Book ${service.title}`} steps={BOOKING_STEPS} />
 
       {/* HIGHLIGHTS */}
       <section className="bg-cream py-16">
