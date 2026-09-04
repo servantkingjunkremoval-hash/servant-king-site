@@ -6,6 +6,7 @@ import { telHref, smsHref } from '@/lib/brand';
 export function StickyMobileBar() {
   return (
     <div
+      data-chrome="sticky"
       className="fixed inset-x-0 bottom-0 z-50 border-t border-charcoal/10 bg-white shadow-[0_-2px_12px_rgba(0,0,0,0.08)] md:hidden"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
