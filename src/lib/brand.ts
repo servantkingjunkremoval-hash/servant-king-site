@@ -220,6 +220,30 @@ export const TRACKING = {
   goWebhookUrl: 'https://hooks.zapier.com/hooks/catch/13145166/4heoska/'
 } as const;
 
+/**
+ * Servant King Demolition (SKD) — the demolition DBA. Its paid landing page
+ * (/demolition) and ads use a dedicated Quo lead line so demolition calls and
+ * texts land in their own inbox and are attributable to SKD campaigns.
+ *
+ * googleAdsId / conversions are for the separate SKD Google Ads account. Leave
+ * them empty until that account exists — GoogleAdsTag skips the SKD config when
+ * googleAdsId is ''. The website-call number must match the page text exactly.
+ */
+export const SKD = {
+  name: 'Servant King Demolition',
+  leadPhone: '6504143366',
+  leadPhoneFormatted: '(650) 414-3366',
+  googleAdsId: '',
+  googleAdsConversions: {
+    /** "SKD - Website Call (30s)" — phone call lead, primary. */
+    websiteCall: '',
+    /** "SKD - Call Click" — secondary. */
+    callClick: '',
+    /** "SKD - Text Click" — secondary. */
+    textClick: ''
+  }
+} as const;
+
 // Tel/SMS helpers
 export const telHref = `tel:+1${BRAND.phone}`;
 export const smsHref = (body?: string) => {
