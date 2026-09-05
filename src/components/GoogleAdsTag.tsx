@@ -4,9 +4,11 @@ import { TRACKING } from '@/lib/brand';
 /**
  * Google Ads conversion tracking.
  *
- * Loads the Google tag (gtag.js) and reports two conversions:
- *   - "Go - Call Click"  when a visitor taps any tel: link
- *   - "Go - Text Click"  when a visitor taps any sms: link
+ * Loads the Google tag (gtag.js) and reports three conversions:
+ *   - "Go - Website Call (30s)"  Google forwarding number swapped in for ad
+ *                                visitors; the call itself is the conversion
+ *   - "Go - Call Click"          when a visitor taps any tel: link (secondary)
+ *   - "Go - Text Click"          when a visitor taps any sms: link
  *
  * One delegated click listener covers every page and survives client-side
  * navigation, so the /go landing pages need no extra wiring.
@@ -20,7 +22,8 @@ import { TRACKING } from '@/lib/brand';
  */
 export function GoogleAdsTag() {
   const id = TRACKING.googleAdsId;
-  const { goCallClick, goTextClick } = TRACKING.googleAdsConversions;
+  const { goCallClick, goTextClick, goWebsiteCall } = TRACKING.googleAdsConversions;
+  const phone = TRACKING.googleAdsPhoneDisplay;
   if (!id) return null;
 
   return (
@@ -36,6 +39,9 @@ export function GoogleAdsTag() {
         window.gtag = window.gtag || gtag;
         gtag('js', new Date());
         gtag('config', '${id}', { allow_enhanced_conversions: true });
+        // Website-call tracking: for ad visitors Google replaces this number (text and tel: links)
+        // with a forwarding number and reports calls >= 30s as "Go - Website Call (30s)".
+        gtag('config', '${goWebsiteCall}', { phone_conversion_number: '${phone}' });
         (function () {
           var CALL = '${goCallClick}';
           var TEXT = '${goTextClick}';
