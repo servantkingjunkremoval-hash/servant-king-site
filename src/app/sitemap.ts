@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BRAND.siteUrl}/services`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BRAND.siteUrl}/service-areas`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BRAND.siteUrl}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BRAND.siteUrl}/reviews`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BRAND.siteUrl}/contact`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BRAND.siteUrl}/guides`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BRAND.siteUrl}/locations`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
