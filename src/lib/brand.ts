@@ -189,7 +189,21 @@ export const BRANCH_LOCATIONS = LOCATIONS.filter((l) => l.role === 'branch');
 export const PRIMARY_LOCATION = LOCATIONS.find((l) => l.isPrimary) ?? LOCATIONS[0];
 
 export const TRACKING = {
-  metaPixelId: '413008923033500'
+  metaPixelId: '413008923033500',
+  /**
+   * Google Ads conversion tracking (account 349-173-6698). The Google tag loads
+   * on every page (see src/components/GoogleAdsTag.tsx) and fires a conversion
+   * when a visitor taps a tel: or sms: link. Google only attributes the event
+   * when the visitor arrived from a Google ad (gclid), so organic clicks are
+   * recorded by nobody. Labels come from Goals → Conversions in Google Ads.
+   */
+  googleAdsId: 'AW-499245484',
+  googleAdsConversions: {
+    /** "Go - Call Click" — Phone call lead, primary. */
+    goCallClick: 'AW-499245484/0shsCKiQ5-4cEKzDh-4B',
+    /** "Go - Text Click" — Contact. */
+    goTextClick: 'AW-499245484/NPHSCKuQ5-4cEKzDh-4B'
+  }
 } as const;
 
 // Tel/SMS helpers
