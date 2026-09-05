@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { track } from '@/lib/track';
+import { GO_REVIEWS, type GoCategory } from '@/lib/reviews';
 
 /**
  * /go — the paid-search landing page.
@@ -20,7 +21,7 @@ import { track } from '@/lib/track';
  * automations read and is attributable to Google Ads.
  */
 
-export type GoCategory = 'furniture' | 'cleanouts' | 'yard' | 'general';
+export type { GoCategory };
 
 const GO_PHONE = '6505025464';
 const GO_PHONE_FORMATTED = '(650) 502-5464';
@@ -116,31 +117,8 @@ function postLead(payload: Record<string, unknown>) {
   }
 }
 
-type Review = { name: string; where?: string; quote: string };
-
-/** Real Google reviews from the Menlo Park profile (365 reviews, 5.0 as of Sep 2026). Excerpted, not edited. */
-const REVIEWS: Record<GoCategory, Review[]> = {
-  general: [
-    { name: 'Chris M.', where: 'Livermore', quote: 'Showed up the same day, on time, worked fast, and extremely courteous.' },
-    { name: 'Nathan T.', quote: 'Super professional, handled with care, got the job done quick, fair quote.' },
-    { name: 'Jim L.', where: 'San Francisco', quote: 'Fantastic service — on time and very reasonable price.' }
-  ],
-  furniture: [
-    { name: 'Jennifer H.', quote: 'We needed help removing junk furniture… They made my life so much less stressful.' },
-    { name: 'Domonique M.', where: 'Burlingame', quote: 'He responded that same night and came the next day… His prices are amazing.' },
-    { name: 'Nathan T.', quote: 'Super professional, handled with care, got the job done quick, fair quote.' }
-  ],
-  cleanouts: [
-    { name: 'Debra L.', quote: 'He handled everything with genuine compassion… treating belongings with dignity and respect.' },
-    { name: 'Valeria G.', quote: 'Office cleanouts, junk removal, storage… they always leave the space looking great.' },
-    { name: 'Chris M.', where: 'Livermore', quote: 'Showed up the same day, on time, worked fast, and extremely courteous.' }
-  ],
-  yard: [
-    { name: 'Domonique M.', where: 'Burlingame', quote: 'I had so much junk to remove… I can finally see the side of my house again.' },
-    { name: 'Gage', where: 'San Jose', quote: 'Excellent and extremely professional — highly recommend them.' },
-    { name: 'Jim L.', where: 'San Francisco', quote: 'Fantastic service — on time and very reasonable price.' }
-  ]
-};
+/** Real Google reviews, category-matched. Data lives in src/lib/reviews.ts (shared with /reviews). */
+const REVIEWS = GO_REVIEWS;
 
 export function GoPage({
   category = 'general',
