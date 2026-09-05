@@ -6,6 +6,7 @@ import { StickyMobileBar } from '@/components/StickyMobileBar';
 import { ContactEventTracker } from '@/components/MetaPixel';
 import { PageViewTracker } from '@/components/PageViewTracker';
 import { CookieConsent } from '@/components/CookieConsent';
+import { GoogleAdsTag } from '@/components/GoogleAdsTag';
 import { buildEntityGraphJsonLd } from '@/lib/metadata';
 import { JsonLd } from '@/components/JsonLd';
 import { BRAND } from '@/lib/brand';
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <StickyMobileBar />
         <CookieConsent />
+        <GoogleAdsTag />
         <ContactEventTracker />
         <PageViewTracker />
       </body>
