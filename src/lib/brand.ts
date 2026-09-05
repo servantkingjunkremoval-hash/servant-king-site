@@ -202,8 +202,22 @@ export const TRACKING = {
     /** "Go - Call Click" — Phone call lead, primary. */
     goCallClick: 'AW-499245484/0shsCKiQ5-4cEKzDh-4B',
     /** "Go - Text Click" — Contact. */
-    goTextClick: 'AW-499245484/NPHSCKuQ5-4cEKzDh-4B'
-  }
+    goTextClick: 'AW-499245484/NPHSCKuQ5-4cEKzDh-4B',
+    /**
+     * "Go - Website Call (30s)" — Phone call lead, primary. Google swaps the
+     * 650 number on the page for a forwarding number for visitors who arrived
+     * from an ad, so each ≥30s call is attributed to the exact ad and keyword.
+     */
+    goWebsiteCall: 'AW-499245484/rJ_qCOGF7u4cEKzDh-4B'
+  },
+  /** The number Google's forwarding snippet looks for and replaces — must match the page text exactly. */
+  googleAdsPhoneDisplay: '(650) 502-5464',
+  /**
+   * Zapier Catch Hook the /go page POSTs its lead events to (tap on what/size,
+   * call, text) with gclid + utm_* attribution. No phone number is ever in
+   * that payload — the caller's number arrives via Quo on the 650 line.
+   */
+  goWebhookUrl: 'https://hooks.zapier.com/hooks/catch/13145166/4heoska/'
 } as const;
 
 // Tel/SMS helpers
