@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { track } from '@/lib/track';
 import { GO_REVIEWS, type GoCategory } from '@/lib/reviews';
+import { TRACKING } from '@/lib/brand';
 
 /**
  * /go — the paid-search landing page.
@@ -25,7 +26,7 @@ export type { GoCategory };
 
 const GO_PHONE = '6505025464';
 const GO_PHONE_FORMATTED = '(650) 502-5464';
-const WEBHOOK_URL = process.env.NEXT_PUBLIC_GO_WEBHOOK_URL ?? '';
+const WEBHOOK_URL = process.env.NEXT_PUBLIC_GO_WEBHOOK_URL ?? TRACKING.goWebhookUrl;
 
 type Tile = { id: string; label: string; sub?: string; icon: string };
 
@@ -159,29 +160,43 @@ export function GoPage({
   function chooseSize(id: string) {
     setSize(id);
     pushEvent('go_step2', { go_what: what, go_size: id });
-    postLead({
-      source: 'go_page',
-      intent: 'selected',
-      category,
-      what,
-      size: id,
-      ...attr,
-      ts: new Date().toISOString()
-    });
+    postLead(leadPayload('selected', what, id));
   }
 
   function onContact(kind: 'call' | 'sms') {
     pushEvent(kind === 'call' ? 'go_call_click' : 'go_sms_click', { go_what: what, go_size: size });
     track('Lead', { content_category: 'go_page', content_name: what ?? category });
-    postLead({
-      source: 'go_page',
-      intent: kind,
+    postLead(leadPayload(kind, what, size));
+  }
+
+  /**
+   * Payload for the Zapier Catch Hook. Key names are what the Zap maps against —
+   * keep them stable. There is deliberately no phone: the page never collects
+   * one; the caller's number arrives in Quo when they call or text the 650 line.
+   */
+  function leadPayload(intent: 'selected' | 'call' | 'sms', w: string | null, sz: string | null) {
+    return {
+      source: 'Google Ads',
+      intent,
+      page: typeof window !== 'undefined' ? window.location.pathname : `/go/${category}`,
       category,
-      what,
-      size,
-      ...attr,
-      ts: new Date().toISOString()
-    });
+      service: w ? LABEL[w] : '',
+      volume: sz ? LABEL[sz] : '',
+      first_name: '',
+      last_name: '',
+      phone: '',
+      email: '',
+      zip: '',
+      city: '',
+      notes: `${intent} on /go`,
+      gclid: attr?.gclid ?? '',
+      utm_source: attr?.utm_source ?? '',
+      utm_medium: attr?.utm_medium ?? '',
+      utm_campaign: attr?.utm_campaign ?? '',
+      utm_term: attr?.utm_term ?? '',
+      utm_content: attr?.utm_content ?? '',
+      submitted_at: new Date().toISOString()
+    };
   }
 
   return (
