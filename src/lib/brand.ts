@@ -217,7 +217,15 @@ export const TRACKING = {
    * call, text) with gclid + utm_* attribution. No phone number is ever in
    * that payload — the caller's number arrives via Quo on the 650 line.
    */
-  goWebhookUrl: 'https://hooks.zapier.com/hooks/catch/13145166/4heoska/'
+  goWebhookUrl: 'https://hooks.zapier.com/hooks/catch/13145166/4heoska/',
+  /**
+   * OpenAI Ads (ChatGPT ads) measurement pixel — data source "Servant King
+   * Website Pixel" in ads.openai.com. See src/components/OpenAIAdsPixel.tsx.
+   * Conversion events: lead_created ("Lead - Call or Text Tap") fires on any
+   * tel:/sms: tap and on quote-form submit; order_created ("Job Booked (HCP)")
+   * is sent server-side from Zapier when a Housecall Pro job is won.
+   */
+  openaiPixelId: '6XPcGW16WghG944ZeFT7oT'
 } as const;
 
 /**
