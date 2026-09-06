@@ -15,6 +15,12 @@ export function track(event: string, params?: TrackParams): void {
     if (typeof window.fbq === 'function') {
       window.fbq('track', event, params ?? {});
     }
+    // OpenAI Ads pixel: every Meta "Lead" is also a ChatGPT-ads lead_created.
+    // The helper is installed by <OpenAIAdsPixel /> and dedupes against the
+    // tel:/sms: tap listener so one tap never counts twice.
+    if (event === 'Lead' && typeof window.skOaiLead === 'function') {
+      window.skOaiLead(String(params?.content_category ?? 'form'));
+    }
   } catch {
     /* never let analytics break the page */
   }
