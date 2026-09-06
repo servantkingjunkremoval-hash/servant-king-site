@@ -149,8 +149,13 @@ export function GoPage({
     return `Hi Servant King, I need ${w.toLowerCase()} removed${s}. Here's a photo:`;
   }, [what, size]);
 
-  const telHref = `tel:+1${GO_PHONE}`;
-  const smsHref = `sms:+1${GO_PHONE}?&body=${encodeURIComponent(smsBody)}`;
+  // ChatGPT-ads visitors get the dedicated CHATGPT Quo line so their calls and
+  // texts are attributed to ChatGPT instead of Google Ads (see TRACKING).
+  const isChatGPT = (attr?.utm_source ?? '').toLowerCase() === 'chatgpt';
+  const phone = isChatGPT ? TRACKING.chatgptLeadPhone : GO_PHONE;
+  const phoneFormatted = isChatGPT ? TRACKING.chatgptLeadPhoneFormatted : GO_PHONE_FORMATTED;
+  const telHref = `tel:+1${phone}`;
+  const smsHref = `sms:+1${phone}?&body=${encodeURIComponent(smsBody)}`;
 
   function chooseWhat(id: string) {
     setWhat(id);
@@ -205,7 +210,7 @@ export function GoPage({
       <div className="flex items-center justify-between px-5 py-4">
         <span className="font-display text-lg font-semibold text-purple">Servant King</span>
         <a href={telHref} onClick={() => onContact('call')} className="text-sm font-semibold text-purple underline-offset-2 hover:underline">
-          {GO_PHONE_FORMATTED}
+          {phoneFormatted}
         </a>
       </div>
 
@@ -292,7 +297,7 @@ export function GoPage({
               onClick={() => onContact('call')}
               className="mt-3 hidden w-full items-center justify-center rounded-xl bg-purple px-6 py-5 text-lg font-bold text-white shadow-lg transition hover:bg-purple-dark md:flex"
             >
-              Call for Your Price — {GO_PHONE_FORMATTED}
+              Call for Your Price — {phoneFormatted}
             </a>
             <a href={smsHref} onClick={() => onContact('sms')} className="mt-3 block text-center text-sm font-medium text-purple underline underline-offset-4">
               or text us a photo
@@ -332,7 +337,7 @@ export function GoPage({
           onClick={() => onContact('call')}
           className="flex w-full items-center justify-center rounded-xl bg-purple py-4 text-base font-bold text-white"
         >
-          {step === 3 ? `Call for Your Price — ${GO_PHONE_FORMATTED}` : 'Skip the taps — call now'}
+          {step === 3 ? `Call for Your Price — ${phoneFormatted}` : 'Skip the taps — call now'}
         </a>
       </div>
     </div>
