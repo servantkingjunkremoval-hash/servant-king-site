@@ -225,7 +225,15 @@ export const TRACKING = {
    * tel:/sms: tap and on quote-form submit; order_created ("Job Booked (HCP)")
    * is sent server-side from Zapier when a Housecall Pro job is won.
    */
-  openaiPixelId: '6XPcGW16WghG944ZeFT7oT'
+  openaiPixelId: '6XPcGW16WghG944ZeFT7oT',
+  /**
+   * Dedicated Quo line for ChatGPT-ads visitors. /go swaps its call and text
+   * buttons to this number when utm_source=chatgpt so inbound calls/texts are
+   * attributable to ChatGPT (the 650-502 line stamps unknown callers as
+   * Google Ads). Inbox "CHATGPT" in Quo.
+   */
+  chatgptLeadPhone: '6503833366',
+  chatgptLeadPhoneFormatted: '(650) 383-3366'
 } as const;
 
 /**
