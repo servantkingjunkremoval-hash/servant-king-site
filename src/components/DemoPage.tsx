@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { track } from '@/lib/track';
 import { REVIEWS, GOOGLE_REVIEW_COUNT, type Review } from '@/lib/reviews';
-import { TRACKING, SKD } from '@/lib/brand';
+import { SKD } from '@/lib/brand';
 
 /**
  * /demolition — the paid-search landing page for Servant King Demolition.
@@ -26,7 +26,7 @@ export type DemoCategory = 'general' | 'kitchen' | 'bathroom' | 'interior' | 'ex
 
 const PHONE = SKD.leadPhone;
 const PHONE_FORMATTED = SKD.leadPhoneFormatted;
-const WEBHOOK_URL = process.env.NEXT_PUBLIC_GO_WEBHOOK_URL ?? TRACKING.goWebhookUrl;
+const WEBHOOK_URL = process.env.NEXT_PUBLIC_SKD_WEBHOOK_URL ?? SKD.webhookUrl;
 
 type Tile = { id: string; label: string; sub?: string; icon: string };
 
