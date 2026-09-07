@@ -241,22 +241,23 @@ export const TRACKING = {
  * (/demolition) and ads use a dedicated Quo lead line so demolition calls and
  * texts land in their own inbox and are attributable to SKD campaigns.
  *
- * googleAdsId / conversions are for the separate SKD Google Ads account. Leave
- * them empty until that account exists — GoogleAdsTag skips the SKD config when
- * googleAdsId is ''. The website-call number must match the page text exactly.
+ * googleAdsId / conversions are for the separate SKD Google Ads account
+ * (625-000-4546). GoogleAdsTag configures it only on /demolition pages. The
+ * website-call number must match the page text exactly.
  */
 export const SKD = {
   name: 'Servant King Demolition',
   leadPhone: '6504143366',
   leadPhoneFormatted: '(650) 414-3366',
-  googleAdsId: '',
+  /** Google Ads account 625-000-4546 (Servant King Demolition). */
+  googleAdsId: 'AW-18432937997',
   googleAdsConversions: {
     /** "SKD - Website Call (30s)" — phone call lead, primary. */
-    websiteCall: '',
+    websiteCall: 'AW-18432937997/VHKjCM-D2vAcEI2gwdVE',
     /** "SKD - Call Click" — secondary. */
-    callClick: '',
+    callClick: 'AW-18432937997/JxpGCIPK3PAcEI2gwdVE',
     /** "SKD - Text Click" — secondary. */
-    textClick: ''
+    textClick: 'AW-18432937997/eGt0CIbK3PAcEI2gwdVE'
   }
 } as const;
 
