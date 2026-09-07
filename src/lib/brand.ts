@@ -249,6 +249,12 @@ export const SKD = {
   name: 'Servant King Demolition',
   leadPhone: '6504143366',
   leadPhoneFormatted: '(650) 414-3366',
+  /**
+   * Zapier Catch Hook for /demolition lead events (Zap "SKD /demolition Lead -
+   * Speed-to-Lead", editor id 379294864). Separate from the /go hook so demo
+   * leads get the SKD Touch 1 from the DEMO line, not junk-removal copy.
+   */
+  webhookUrl: 'https://hooks.zapier.com/hooks/catch/13145166/4hxfciy/',
   /** Google Ads account 625-000-4546 (Servant King Demolition). */
   googleAdsId: 'AW-18432937997',
   googleAdsConversions: {
