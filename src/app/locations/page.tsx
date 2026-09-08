@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { BRAND, LOCATIONS, BRANCH_LOCATIONS, telHref, smsHref } from '@/lib/brand';
 import { buildMetadata, buildBreadcrumbJsonLd } from '@/lib/metadata';
 import { JsonLd } from '@/components/JsonLd';
+import { LocationMap } from '@/components/LocationMap';
 
 export const metadata: Metadata = buildMetadata({
   title: 'Our Locations — Menlo Park, San Ramon, Lathrop & Stockton',
@@ -107,6 +108,8 @@ export default function LocationsPage() {
                   </div>
                 )}
               </dl>
+
+              {loc.street && <LocationMap location={loc} className="mt-6" />}
             </article>
           ))}
 
