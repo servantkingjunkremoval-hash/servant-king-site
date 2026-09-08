@@ -9,6 +9,8 @@ import { JsonLd } from '@/components/JsonLd';
 import { AnswerSummary, FactsTable, BookingSteps } from '@/components/AnswerBlock';
 import { areaAnswer, areaFacts, BOOKING_STEPS } from '@/lib/answerBlocks';
 import { ServicesCarousel } from '@/components/ServicesCarousel';
+import { LocationMap } from '@/components/LocationMap';
+import { BRANCH_LOCATIONS } from '@/lib/brand';
 
 export function generateStaticParams() {
   return getAllServiceAreaSlugs().map((slug) => ({ slug }));
@@ -36,6 +38,9 @@ export default async function ServiceAreaPage({ params }: { params: Promise<{ sl
     { name: 'Service Areas', path: '/service-areas' },
     { name: area.title, path: `/service-areas/${area.slug}` }
   ]);
+  // A city that hosts one of our branches gets its office on its own page —
+  // address, map and profile link, matching that branch's LocalBusiness node.
+  const office = BRANCH_LOCATIONS.find((l) => l.city === area.title && l.street) ?? null;
   const relatedAreas = serviceAreas
     .filter((sa) => sa.county === area.county && sa.slug !== area.slug)
     .slice(0, 6);
@@ -100,6 +105,29 @@ export default async function ServiceAreaPage({ params }: { params: Promise<{ sl
 
       {/* ORDERED STEPS — the booking sequence in a real <ol> */}
       <BookingSteps heading={`How to Book a ${area.title} Job`} steps={BOOKING_STEPS} />
+
+      {/* LOCAL OFFICE — only on the four branch cities */}
+      {office && (
+        <section id="office" className="bg-white pb-16 md:pb-20">
+          <div className="container-content max-w-narrow">
+            <h2 className="h2">Our {area.title} Office</h2>
+            <p className="mt-5 text-[18px] leading-relaxed text-charcoal md:text-[20px]">
+              Servant King has a staffed location right here in {area.title}, so {area.title}{' '}
+              jobs are dispatched locally — not from across the Bay. Crews leave from{' '}
+              {office.street}
+              {office.suite ? `, ${office.suite}` : ''}, and you can call, text, or stop in.
+            </p>
+            <LocationMap location={office} className="mt-6" />
+            <p className="mt-4 text-[15px] text-charcoal/80">
+              All four Servant King locations are listed on the{' '}
+              <Link href="/locations" className="font-semibold text-purple hover:underline">
+                Locations page
+              </Link>
+              .
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* NEIGHBORHOODS */}
       <section className="bg-cream py-16">
