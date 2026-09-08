@@ -195,13 +195,20 @@ export function locationAddress(loc: Location): string {
 }
 
 /**
- * Key-free Google Maps embed for a location. Querying by business name + address
- * makes the embed resolve to the location's own Business Profile pin (name, rating,
- * "View larger map") rather than a bare address marker, with no API key or billing.
+ * Key-free Google Maps embed for a location — the same URL Google Maps' own
+ * "Share → Embed a map" produces for a business, with no API key or billing.
+ * It is pinned to the branch's own Business Profile (the cid in `gbpUrl`, as hex)
+ * and centred on the real coordinates, so the frame shows that profile's card —
+ * name, address, rating, directions — rather than a text-search guess. (A plain
+ * `?q=<name>, <address>` search resolved the brand to the wrong place.)
  */
 export function locationMapEmbedUrl(loc: Location): string {
-  // This is the URL that maps.google.com/?q=…&output=embed 301s to; using it
-  // directly saves the redirect hop on every page load.
+  const cid = loc.gbpUrl?.match(/cid=(\d+)/)?.[1];
+  const name = encodeURIComponent(BRAND.name);
+  if (cid) {
+    const hex = BigInt(cid).toString(16);
+    return `https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3000!2d${loc.longitude}!3d${loc.latitude}!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x${hex}!2s${name}!5e0!3m2!1sen!2sus!4v1`;
+  }
   const q = encodeURIComponent(`${BRAND.name}, ${locationAddress(loc)}`);
   return `https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s${q}!6i15`;
 }
