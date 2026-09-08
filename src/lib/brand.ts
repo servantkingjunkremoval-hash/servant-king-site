@@ -76,9 +76,9 @@ export const BRAND = {
  *
  * Addresses and ZIPs are confirmed against each location's Google Business Profile.
  *
- * TODO(Chris): coordinates for the three non-HQ sites are still city centroids, not
- * the actual sites — flagged with `coordinatesArePlaceholder`. A wrong lat/lng hurts
- * local ranking. All four `gbpUrl` values are verified against each profile's own
+ * Coordinates for all four sites were read from each address's own Google Maps
+ * place record (2026-09-08); `coordinatesArePlaceholder` stays on the type so a
+ * future site can be flagged until it is pinned. All four `gbpUrl` values are verified against each profile's own
  * `1s0x0:<cid>` link — the other /maps/place URL on those pages is a shared brand
  * link that is identical across locations and must NOT be used per-location.
  */
@@ -140,9 +140,9 @@ export const LOCATIONS: Location[] = [
     zip: '94583',
     country: 'US',
     gbpUrl: 'https://maps.google.com/?cid=8743281642351882757',
-    latitude: 37.7799,
-    longitude: -121.978,
-    coordinatesArePlaceholder: true,
+    latitude: 37.7793225,
+    longitude: -121.9737585,
+    coordinatesArePlaceholder: false,
     blurb:
       'Our East Bay base, covering the I-680 corridor — San Ramon, Danville, Alamo, Walnut Creek, Dublin, Pleasanton, Concord, and the rest of Contra Costa and Alameda County.',
     countiesServed: ['Contra Costa County', 'Alameda County']
@@ -158,9 +158,9 @@ export const LOCATIONS: Location[] = [
     zip: '95330',
     country: 'US',
     gbpUrl: 'https://maps.google.com/?cid=12178289965899810438',
-    latitude: 37.8227,
-    longitude: -121.2766,
-    coordinatesArePlaceholder: true,
+    latitude: 37.8088676,
+    longitude: -121.3430812,
+    coordinatesArePlaceholder: false,
     blurb:
       'Our Central Valley base, covering Lathrop, Manteca, Tracy, Stockton, Modesto, Ripon, and the surrounding San Joaquin County communities.',
     countiesServed: ['San Joaquin County', 'Stanislaus County']
@@ -176,9 +176,9 @@ export const LOCATIONS: Location[] = [
     zip: '95202',
     country: 'US',
     gbpUrl: 'https://maps.google.com/?cid=10400907704616522833',
-    latitude: 37.9577,
-    longitude: -121.2908,
-    coordinatesArePlaceholder: true,
+    latitude: 37.964934,
+    longitude: -121.2932978,
+    coordinatesArePlaceholder: false,
     blurb:
       'Our Stockton location, with a meeting room and working space for customers and contractors, and the yard the fleet is parked and dispatched from. Covers Stockton, Lodi, Manteca, Tracy, and the surrounding San Joaquin County communities.',
     countiesServed: ['San Joaquin County']
@@ -186,6 +186,25 @@ export const LOCATIONS: Location[] = [
 ];
 
 export const BRANCH_LOCATIONS = LOCATIONS.filter((l) => l.role === 'branch');
+
+/** One-line postal address for a location, as Google Maps expects it. */
+export function locationAddress(loc: Location): string {
+  return [loc.street && `${loc.street}${loc.suite ? ` ${loc.suite}` : ''}`, `${loc.city}, ${loc.state} ${loc.zip ?? ''}`.trim()]
+    .filter(Boolean)
+    .join(', ');
+}
+
+/**
+ * Key-free Google Maps embed for a location. Querying by business name + address
+ * makes the embed resolve to the location's own Business Profile pin (name, rating,
+ * "View larger map") rather than a bare address marker, with no API key or billing.
+ */
+export function locationMapEmbedUrl(loc: Location): string {
+  // This is the URL that maps.google.com/?q=…&output=embed 301s to; using it
+  // directly saves the redirect hop on every page load.
+  const q = encodeURIComponent(`${BRAND.name}, ${locationAddress(loc)}`);
+  return `https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s${q}!6i15`;
+}
 export const PRIMARY_LOCATION = LOCATIONS.find((l) => l.isPrimary) ?? LOCATIONS[0];
 
 export const TRACKING = {
