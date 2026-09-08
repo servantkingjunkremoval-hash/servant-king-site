@@ -107,11 +107,16 @@ function pushEvent(event: string, data: Record<string, unknown>) {
 function postLead(payload: Record<string, unknown>) {
   if (!WEBHOOK_URL) return;
   try {
-    const body = JSON.stringify(payload);
+    // Zapier Catch Hook does not parse a beacon body (arrives as raw text),
+    // but it always parses query-string params into fields — so send the
+    // payload in the URL and keep the body empty.
+    const qs = new URLSearchParams();
+    for (const [k, v] of Object.entries(payload)) qs.set(k, v == null ? '' : String(v));
+    const url = `${WEBHOOK_URL}?${qs.toString()}`;
     if (navigator.sendBeacon) {
-      navigator.sendBeacon(WEBHOOK_URL, new Blob([body], { type: 'application/json' }));
+      navigator.sendBeacon(url);
     } else {
-      fetch(WEBHOOK_URL, { method: 'POST', body, keepalive: true, headers: { 'Content-Type': 'application/json' } });
+      fetch(url, { method: 'POST', keepalive: true });
     }
   } catch {
     /* fail silent — the call still goes through */
