@@ -1,12 +1,21 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { GoPage, type GoCategory } from '@/components/GoPage';
+import { ServiceLanding } from '@/components/ServiceLanding';
+import { SERVICE_LANDINGS, serviceLandingBySlug } from '@/lib/serviceLandings';
 
 type Route = { base: GoCategory; title: string; description: string; h1?: string; sub?: string };
 
 /**
  * One route per ad group, plus service-specific routes for the highest-intent
  * keywords so the page headline matches the exact search (message match).
+ *
+ * Two kinds of page share this route:
+ *  - CATEGORIES below → the survey-style GoPage (tap tiles, one CTA).
+ *  - SERVICE_LANDINGS (src/lib/serviceLandings.ts) → full one-thought pages,
+ *    one per themed Google Ads ad group. Checked first. Adding one = adding an
+ *    entry to that file; generateStaticParams and metadata pick it up here.
+ * Both inherit /go/layout.tsx: noindex, no site header/footer, no cookie banner.
  */
 const CATEGORIES: Record<string, Route> = {
   furniture: {
@@ -69,17 +78,24 @@ const CATEGORIES: Record<string, Route> = {
 };
 
 export function generateStaticParams() {
-  return Object.keys(CATEGORIES).map((category) => ({ category }));
+  return [
+    ...Object.keys(CATEGORIES).map((category) => ({ category })),
+    ...SERVICE_LANDINGS.map((p) => ({ category: p.slug }))
+  ];
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ category: string }> }): Promise<Metadata> {
   const { category } = await params;
+  const s = serviceLandingBySlug(category);
+  if (s) return { title: s.title, description: s.metaDescription };
   const c = CATEGORIES[category];
   return c ? { title: c.title, description: c.description } : {};
 }
 
 export default async function GoCategoryPage({ params }: { params: Promise<{ category: string }> }) {
   const { category } = await params;
+  const service = serviceLandingBySlug(category);
+  if (service) return <ServiceLanding page={service} />;
   const r = CATEGORIES[category];
   if (!r) notFound();
   return <GoPage category={r.base} headline={r.h1 && r.sub ? { h1: r.h1, sub: r.sub } : undefined} />;
