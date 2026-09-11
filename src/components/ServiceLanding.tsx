@@ -181,7 +181,7 @@ export function ServiceLanding({ page }: { page: ServiceLandingData }) {
         <div className="mx-auto grid w-full max-w-5xl gap-8 px-5 py-9 md:grid-cols-[1.15fr_.85fr] md:items-center md:py-14">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-gold">{page.eyebrow}</p>
-            <h1 className="mt-3 font-display text-3xl font-semibold leading-tight tracking-tightest md:text-5xl">
+            <h1 className="mt-3 font-display text-3xl font-semibold leading-tight tracking-tightest text-cream md:text-5xl">
               {page.h1}
             </h1>
             <p className="mt-4 text-base font-semibold text-gold md:text-lg">{page.promise}</p>
