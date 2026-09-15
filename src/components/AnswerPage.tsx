@@ -165,7 +165,7 @@ export function AnswerPage({ page }: { page: AnswerPageData }) {
             <p className="text-xs font-semibold uppercase tracking-widest text-gold">
               {isDemo ? SKD.name : 'Servant King Junk Removal'}
             </p>
-            <h1 className="mt-3 font-display text-3xl font-semibold leading-tight tracking-tightest md:text-4xl">
+            <h1 className="mt-3 font-display text-3xl font-semibold leading-tight tracking-tightest text-cream md:text-4xl">
               {page.h1}
             </h1>
             <p className="mt-4 text-base font-semibold text-gold md:text-lg">{page.promise}</p>
