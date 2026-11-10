@@ -84,7 +84,7 @@ const HEADLINES: Record<DemoCategory, { h1: string; sub: string }> = {
   },
   mobileHome: {
     h1: 'Mobile Home Teardown — Pad Cleared, Debris Gone.',
-    sub: 'Single or double wide, skirting, steps and pad. Most run about $6,500. Tap what’s coming out.'
+    sub: 'Single or double wide — skirting, steps and pad all hauled. Tap what’s coming out.'
   },
   adu: {
     h1: 'Clearing the Site for an ADU or Garage Conversion?',
