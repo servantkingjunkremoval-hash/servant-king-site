@@ -54,9 +54,11 @@ export function GoogleAdsTag() {
         }
         // Website-call tracking: for ad visitors Google replaces the page's number (text and tel: links)
         // with a forwarding number and reports calls >= 30s as a "Website Call (30s)" conversion.
-        if (IS_SKD && SKD_ID && '${skd.websiteCall}') {
-          gtag('config', '${skd.websiteCall}', { phone_conversion_number: '${SKD.leadPhoneFormatted}' });
-        } else if (!IS_SKD) {
+        // On /demolition the number is owned by CallRail's dynamic number insertion.
+        // Google must NOT also swap it: two scripts rewriting the same tel: link race
+        // each other and break both attributions. CallRail reports those calls to the
+        // SKD Google Ads account as conversions instead, with keyword and gclid intact.
+        if (!IS_SKD) {
           gtag('config', '${goWebsiteCall}', { phone_conversion_number: '${phone}' });
         }
         (function () {
