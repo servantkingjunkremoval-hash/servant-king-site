@@ -54,7 +54,7 @@ const CATEGORIES: Record<string, Route> = {
     base: 'mobileHome',
     title: 'Mobile Home Demolition & Removal — Call for Your Price | Servant King Demolition',
     description:
-      'Single and double wide teardown — skirting, steps and pad hauled off. Most run about $6,500. Licensed C-21. Call for a real number.'
+      'Single and double wide teardown — skirting, steps and pad hauled off. Licensed C-21. Call for a real number.'
   },
   adu: {
     base: 'adu',
