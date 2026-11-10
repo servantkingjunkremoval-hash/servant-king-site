@@ -22,7 +22,16 @@ import { SKD } from '@/lib/brand';
  * match the ad group (message match).
  */
 
-export type DemoCategory = 'general' | 'kitchen' | 'bathroom' | 'interior' | 'exterior' | 'concrete' | 'contractors';
+export type DemoCategory =
+  | 'general'
+  | 'kitchen'
+  | 'bathroom'
+  | 'interior'
+  | 'exterior'
+  | 'concrete'
+  | 'mobileHome'
+  | 'adu'
+  | 'contractors';
 
 const PHONE = SKD.leadPhone;
 const PHONE_FORMATTED = SKD.leadPhoneFormatted;
@@ -36,6 +45,8 @@ const STEP1: Tile[] = [
   { id: 'interior', label: 'Interior Strip-Out', sub: 'Drywall, flooring, whole rooms', icon: '🏚️' },
   { id: 'exterior', label: 'Deck, Fence, Shed or Pool', sub: 'Torn down and hauled off', icon: '🪚' },
   { id: 'concrete', label: 'Concrete, Patio or Driveway', sub: 'Broken up and removed', icon: '🧱' },
+  { id: 'mobileHome', label: 'Mobile Home Teardown', sub: 'Single or double wide, pad and all', icon: '🚚' },
+  { id: 'adu', label: 'ADU or Garage Conversion', sub: 'Clearing the site for a build', icon: '🏗️' },
   { id: 'contractors', label: "I'm a Contractor", sub: 'Need a demo sub on a job', icon: '👷' }
 ];
 
@@ -70,6 +81,14 @@ const HEADLINES: Record<DemoCategory, { h1: string; sub: string }> = {
   concrete: {
     h1: 'Concrete, Patio or Driveway Removal — Broken Up and Hauled.',
     sub: 'Slab, footings, walkway — the right equipment for the job. Tap what’s coming out.'
+  },
+  mobileHome: {
+    h1: 'Mobile Home Teardown — Pad Cleared, Debris Gone.',
+    sub: 'Single or double wide, skirting, steps and pad. Most run about $6,500. Tap what’s coming out.'
+  },
+  adu: {
+    h1: 'Clearing the Site for an ADU or Garage Conversion?',
+    sub: 'Walls, slab and debris out, permits pulled, site ready for your builder. Tap what’s coming out.'
   },
   contractors: {
     h1: 'Need a Demo Sub That Keeps Your Schedule?',
