@@ -49,6 +49,26 @@ const CATEGORIES: Record<string, Route> = {
     description: 'Old deck torn down and hauled off, usually in a day. Licensed C-21. Call for a real number.',
     h1: 'Old Deck? Torn Down and Gone in a Day.',
     sub: 'Boards, framing, footings — dismantled, loaded, hauled. Tap when you need it done.'
+  },
+  'mobile-home': {
+    base: 'mobileHome',
+    title: 'Mobile Home Demolition & Removal — Call for Your Price | Servant King Demolition',
+    description:
+      'Single and double wide teardown — skirting, steps and pad hauled off. Most run about $6,500. Licensed C-21. Call for a real number.'
+  },
+  adu: {
+    base: 'adu',
+    title: 'ADU & Garage Conversion Demolition — Call for Your Price | Servant King Demolition',
+    description:
+      'Site cleared for your ADU or garage conversion. Permits pulled, haul-off included. Licensed C-21. Call for a real number.'
+  },
+  'garage-conversion': {
+    base: 'adu',
+    title: 'Garage Conversion Demolition — Call for Your Price | Servant King Demolition',
+    description:
+      'Garage stripped and cleared for conversion, debris hauled the same day. Licensed C-21. Call for a real number.',
+    h1: 'Converting the Garage? We Clear It Out First.',
+    sub: 'Walls, slab, old framing — out and hauled, ready for your builder. Tap what’s coming out.'
   }
 };
 
