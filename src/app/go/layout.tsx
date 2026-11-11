@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { CallRailNoSwap } from '@/components/CallRailTracking';
 
 /**
  * /go is a paid-search landing page: no site header, footer, or sticky bar,
@@ -13,7 +14,7 @@ export default function GoLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <style>{`header, footer, [data-chrome="sticky"], [role="dialog"][aria-label="Cookie consent"] { display: none !important; } main { padding-bottom: 0 !important; }`}</style>
-      {children}
+      <CallRailNoSwap>{children}</CallRailNoSwap>
     </>
   );
 }
