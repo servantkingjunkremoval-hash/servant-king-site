@@ -91,8 +91,14 @@ export function AnswerPage({ page }: { page: AnswerPageData }) {
   const isChatGPT = (attr?.utm_source ?? '').toLowerCase() === 'chatgpt';
   const basePhone = isDemo ? SKD.leadPhone : LEAD_PHONE;
   const baseFormatted = isDemo ? SKD.leadPhoneFormatted : LEAD_PHONE_FORMATTED;
-  const phone = isChatGPT ? TRACKING.chatgptLeadPhone : basePhone;
-  const phoneFormatted = isChatGPT ? TRACKING.chatgptLeadPhoneFormatted : baseFormatted;
+  // ChatGPT visitors get the dedicated CHATGPT Quo line so their calls aren't
+  // stamped as Google Ads leads by the 650-502 line. Demolition pages are the
+  // exception: those calls stay on the SKD DEMO line (650) 414-3366 so Chris
+  // still hears "this is a demolition call" when it rings. CallRail splits the
+  // ChatGPT campaigns apart on the demo side instead of a second Quo number.
+  const useChatGPTLine = isChatGPT && !isDemo;
+  const phone = useChatGPTLine ? TRACKING.chatgptLeadPhone : basePhone;
+  const phoneFormatted = useChatGPTLine ? TRACKING.chatgptLeadPhoneFormatted : baseFormatted;
   const webhookUrl = isDemo ? SKD.webhookUrl : TRACKING.goWebhookUrl;
 
   const smsBody = isDemo
