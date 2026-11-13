@@ -31,10 +31,28 @@ declare global {
 
 export default function BookedPage() {
   useEffect(() => {
-    if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
-    window.gtag('event', 'conversion', {
-      send_to: 'AW-499245484/Qs58CJKh-7cdEKzDh-4B',
-    });
+    // GoogleAdsTag.tsx loads gtag.js with `async`, so on first paint window.gtag
+    // may not exist yet. Poll briefly rather than bailing out, or the conversion
+    // silently never fires.
+    if (typeof window === 'undefined') return;
+
+    let tries = 0;
+    const fire = () => {
+      if (typeof window.gtag !== 'function') return false;
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-499245484/Qs58CJKh-7cdEKzDh-4B',
+      });
+      return true;
+    };
+
+    if (fire()) return;
+
+    const id = window.setInterval(() => {
+      tries += 1;
+      if (fire() || tries > 40) window.clearInterval(id);
+    }, 250);
+
+    return () => window.clearInterval(id);
   }, []);
 
   return (
