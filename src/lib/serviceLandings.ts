@@ -1385,7 +1385,196 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     title: 'Pre-Listing Cleanouts for Home Sellers',
     metaDescription:
       'Selling your home on the SF Peninsula, San Jose or Tri-Valley? We clear rooms, garage and yard before the photographer and stager. Flat price.'
-  }
+  },
+  {
+    slug: 'junk-removal',
+    adGroup: 'Junk Removal - Core',
+    nav: 'a junk removal',
+    eyebrow: 'Junk removal & hauling',
+    h1: 'Junk Removal, Flat Price, Same or Next Day',
+    promise:
+      'Whatever it is, gone today or tomorrow — without renting a truck, pulling a permit, or finding out the price after it is already loaded.',
+    soThat:
+      'You send a photo, you get one number back, and the crew carries it from wherever it sits — so that the price you were quoted is the price you pay.',
+    hero: '/images/go/junk-removal.jpg',
+    pains: [
+      'One pile, and every company wants to “come take a look” first.',
+      'Quotes that sound cheap on the phone and climb once the truck is loaded.',
+      'A load too big for the bin and too small to justify a dumpster.',
+      'Nobody will give you a straight number until someone is standing in your driveway.'
+    ],
+    painTurn: 'Text one photo. Get one number. That number does not move.',
+    sizerQuestion: 'How much do you have?',
+    sizer: [
+      { id: 'few', label: 'A few items', price: P.min },
+      { id: 'half', label: 'About half a truck', price: P.typical },
+      { id: 'full', label: 'A full truck', price: P.full },
+      { id: 'more', label: 'More than one load', price: P.multi }
+    ],
+    included: [
+      'All the lifting, carrying and loading',
+      'From any room, any floor, or the yard',
+      'Donation first for anything still usable',
+      'Appliances, electronics and tires sorted and routed properly',
+      'Dump fees included',
+      'Swept clean when we leave'
+    ],
+    steps: [
+      { title: 'Text a photo', detail: 'One wide shot of the pile, the room or the garage is usually enough.' },
+      { title: 'Get a flat price', detail: 'Usually back in minutes. Locked before we load.' },
+      { title: 'We haul it and sweep', detail: 'Same-day slots are often open. Mondays and Saturdays fill first.' }
+    ],
+    qa: [
+      {
+        q: 'What does junk removal cost?',
+        a: 'Single items start at $149. A room or two usually lands between $250 and $700, and a full truck runs $800–$1,500. Bigger jobs are priced per load from photos. You get your number before we come, and it is locked before we load.'
+      },
+      {
+        q: 'Do I need to be there?',
+        a: 'Not for most jobs. Tell us what goes and what stays, leave it accessible, and we text you when it is clear.'
+      },
+      {
+        q: 'What won’t you take?',
+        a: 'Anything that may contain asbestos has to be tested first. Paint, solvents and batteries we take but route separately. Hazardous chemicals and medical waste we do not take — tell us what you have and we will say so straight rather than show up and refuse it.'
+      },
+      {
+        q: 'Wouldn’t a dumpster be cheaper?',
+        a: 'For some jobs it is, and we will tell you. A 10-yard roll-off in the South Bay runs around $430 for seven days with a one-to-two-ton allowance. If you will genuinely fill it and load it yourself, it is competitive. If you would fill two-thirds, you paid for a box you never used — plus every hour of loading.'
+      }
+    ],
+    reviews: ['Chris M.', 'Domonique M.', 'Gage'],
+    ctaLabel: 'Get your flat price',
+    smsBody: 'Hi Servant King, I need some junk hauled away. Here is a photo:',
+    title: 'Junk Removal — Flat Price, Same or Next Day',
+    metaDescription:
+      'Junk removal on the SF Peninsula, San Jose and Tri-Valley. Text a photo, get one flat price back in minutes, locked before we load. Single items from $149.'
+  },
+  {
+    slug: 'junk-removal-cost',
+    adGroup: 'Junk Removal Pricing',
+    nav: 'a junk removal quote',
+    eyebrow: 'What it actually costs',
+    h1: 'What Junk Removal Costs — The Actual Numbers',
+    promise:
+      'The real price bands, published on this page, before you call anyone — so you can budget the job without sitting through a sales visit to find out.',
+    soThat:
+      'We put the numbers in writing and price your job flat from a photo — so that you are comparing real prices, not waiting on three companies to come look.',
+    hero: '/images/go/junk-removal-cost.jpg',
+    pains: [
+      'Every site says “call for a quote” and none of them say a number.',
+      'A phone estimate that changes once the crew is in your driveway.',
+      'Three companies, three visits, three different stories.',
+      'You just want to know whether this is a $200 job or a $1,200 job.'
+    ],
+    painTurn: 'Here are the bands. Send a photo and we will tell you which one you are in.',
+    sizerQuestion: 'Find your job',
+    sizer: [
+      { id: 'few', label: 'One item or a few', price: P.min },
+      { id: 'half', label: 'A room, or about half a truck', price: P.typical },
+      { id: 'full', label: 'A full truck', price: P.full },
+      { id: 'more', label: 'Whole house, or multiple loads', price: P.multi }
+    ],
+    included: [
+      'Labor and loading — the price is not per-hour on top',
+      'Dump and transfer-station fees',
+      'Donation drop-off for anything usable',
+      'Sweep-up after the load',
+      'Heavy material (concrete, dirt, tile) priced by weight, quoted up front',
+      'The number locked before we load — no change on the day'
+    ],
+    steps: [
+      { title: 'Find your band above', detail: 'Most jobs land in one of the four. Heavy material is priced by weight.' },
+      { title: 'Text a photo to confirm it', detail: 'We come back with your exact flat price, usually in minutes.' },
+      { title: 'Book it, or don’t', detail: 'No visit required to get the number, and no pressure once you have it.' }
+    ],
+    qa: [
+      {
+        q: 'Why do most companies refuse to publish prices?',
+        a: 'Because volume is hard to judge from a description, and a wrong number costs them the job either way. We publish bands instead of one price for the same reason — then confirm your exact flat price from a photo, which is accurate enough that we can lock it before we load.'
+      },
+      {
+        q: 'What makes a job cost more?',
+        a: 'Volume first — how much space it takes in the truck. Then weight: concrete, dirt, tile and sod are priced by weight because the transfer station charges by the ton. Stairs, long carries and tight access add labor. Nothing else is a surcharge.'
+      },
+      {
+        q: 'Is the price really flat?',
+        a: 'Yes. We price from photos or a walkthrough and the number does not move on the day. If you add items after we have quoted, we requote before loading them — never after.'
+      },
+      {
+        q: 'How does this compare to a dumpster?',
+        a: 'A 10-yard roll-off in the South Bay runs around $430 for seven days with a one-to-two-ton allowance, and overage is roughly $150 a ton — and you load it. With a crew you pay for the space your load takes and the labor is included. For a genuinely full self-loaded box the dumpster wins; for most jobs it does not.'
+      }
+    ],
+    reviews: ['Chris M.', 'Jim L.', 'Nathan T.'],
+    ctaLabel: 'Get your exact price',
+    smsBody: 'Hi Servant King, can you price this job? Here is a photo:',
+    title: 'Junk Removal Cost — Published Price Bands',
+    metaDescription:
+      'What junk removal actually costs on the SF Peninsula, San Jose and Tri-Valley. Published price bands from $149, exact flat price from a photo, locked before we load.'
+  },
+  {
+    slug: 'bulky-item-pickup',
+    adGroup: 'Bulky Item Pickup',
+    nav: 'a bulky item pickup',
+    eyebrow: 'Bulky & oversized item pickup',
+    h1: 'Bulky Item Pickup, Bigger Than the City Will Take',
+    promise:
+      'The couch, the fridge, the exercise machine and the pile beside them gone this week — without waiting on a city pickup window or stacking it at the curb for a month.',
+    soThat:
+      'We take oversized items the bin and the bulk-pickup rules won’t cover, carried out from wherever they sit — so that it is gone on your schedule, not the city’s.',
+    hero: '/images/go/bulky-item-pickup.jpg',
+    pains: [
+      'Your city’s bulky pickup is twice a year and already booked.',
+      'A two-item limit, and you have nine things.',
+      'Items the city flat refuses — mattresses, fridges, tires, construction debris.',
+      'A pile at the curb the neighbors are starting to mention.'
+    ],
+    painTurn: 'If your city will take it for free, use them. We are for everything they won’t.',
+    sizerQuestion: 'How much needs to go?',
+    sizer: [
+      { id: 'one', label: 'One or two large items', price: P.min },
+      { id: 'several', label: 'Several items', price: P.typical },
+      { id: 'full', label: 'A full truck', price: P.full },
+      { id: 'more', label: 'More than one load', price: P.multi }
+    ],
+    included: [
+      'Couches, mattresses, appliances, exercise equipment, patio furniture',
+      'Carried out from any room or any floor — not just the curb',
+      'Items most city programs refuse, including refrigerant appliances and tires',
+      'Donation first for anything still usable',
+      'Dump fees included',
+      'No limit on the number of items'
+    ],
+    steps: [
+      { title: 'Text a photo', detail: 'Of the items and where they sit.' },
+      { title: 'Get a flat price', detail: 'By volume, usually back in minutes. Locked before we load.' },
+      { title: 'We carry it out', detail: 'Same-day slots are often open — no pickup window to wait for.' }
+    ],
+    qa: [
+      {
+        q: 'Doesn’t my city pick up bulky items for free?',
+        a: 'Many do, once or twice a year, usually with a two-to-three item cap and a list of exclusions — mattresses, refrigerant appliances, tires and construction debris are commonly refused. If your pickup is coming up and your items qualify, use it; that is the cheapest option. We are for when it is too many items, the wrong items, or you cannot wait.'
+      },
+      {
+        q: 'Do I have to drag it to the curb?',
+        a: 'No. That is the main difference. City crews collect from the curb only; we carry it out of the bedroom, the basement or the back yard.'
+      },
+      {
+        q: 'Is there a limit on items?',
+        a: 'No. Price is by the space the load takes in the truck, not per item, so nine things often costs less than you would guess.'
+      },
+      {
+        q: 'What does it cost?',
+        a: 'One or two large items start at $149. Several items usually land between $250 and $700, and a full truck runs $800–$1,500 — locked before we load.'
+      }
+    ],
+    reviews: ['Domonique M.', 'Jennifer H.', 'Gage'],
+    ctaLabel: 'Get your bulky pickup price',
+    smsBody: 'Hi Servant King, I have some bulky items that need picking up. Here is a photo:',
+    title: 'Bulky Item Pickup — No Item Limit, Flat Price',
+    metaDescription:
+      'Bulky and oversized item pickup on the SF Peninsula, San Jose and Tri-Valley. Items the city won’t take, carried out from any room. No item limit, from $149.'
+  },
 ];
 
 export function serviceLandingBySlug(slug: string): ServiceLanding | undefined {
