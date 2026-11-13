@@ -57,7 +57,7 @@ const STEP2: Tile[] = [
   { id: 'asap', label: 'ASAP — crew is waiting', icon: '🚨' }
 ];
 
-const HEADLINES: Record<DemoCategory, { h1: string; sub: string }> = {
+const HEADLINES: Record<DemoCategory, { h1: string; sub: string; eyebrow?: string }> = {
   general: {
     h1: 'Remodel Starting? We Do the Demo — and Haul It All Off.',
     sub: 'Licensed C-21 demolition contractor. Tap what’s coming out and call for a real number.'
@@ -91,6 +91,7 @@ const HEADLINES: Record<DemoCategory, { h1: string; sub: string }> = {
     sub: 'Walls, slab and debris out, permits pulled, site ready for your builder. Tap what’s coming out.'
   },
   contractors: {
+    eyebrow: 'Are you a General Contractor?',
     h1: 'Need a Demo Sub That Keeps Your Schedule?',
     sub: 'Licensed C-21, insured, COI on request. 2-man crew + dump truck, haul-off included. Tap the scope.'
   }
@@ -156,7 +157,7 @@ export function DemoPage({
   headline
 }: {
   category?: DemoCategory;
-  headline?: { h1: string; sub: string };
+  headline?: { h1: string; sub: string; eyebrow?: string };
 }) {
   const [what, setWhat] = useState<string | null>(category === 'general' ? null : category);
   const [when, setWhen] = useState<string | null>(null);
@@ -242,6 +243,9 @@ export function DemoPage({
       </div>
 
       <div className="mx-auto w-full max-w-narrow px-5 pb-40 pt-2 md:pb-16 md:pt-8">
+        {copy.eyebrow ? (
+          <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-purple md:text-base">{copy.eyebrow}</p>
+        ) : null}
         <h1 className="font-display text-3xl font-semibold leading-tight tracking-tightest md:text-5xl">{copy.h1}</h1>
         <p className="mt-3 text-base text-muted md:text-lg">{copy.sub}</p>
 
