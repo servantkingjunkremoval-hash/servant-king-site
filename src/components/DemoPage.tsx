@@ -83,10 +83,12 @@ const HEADLINES: Record<DemoCategory, { h1: string; sub: string; eyebrow?: strin
     sub: 'Slab, footings, walkway — the right equipment for the job. Tap what’s coming out.'
   },
   mobileHome: {
+    eyebrow: 'Mobile home coming down?',
     h1: 'Mobile Home Teardown — Pad Cleared, Debris Gone.',
     sub: 'Single or double wide — skirting, steps and pad all hauled. Tap what’s coming out.'
   },
   adu: {
+    eyebrow: 'Building an ADU?',
     h1: 'Clearing the Site for an ADU or Garage Conversion?',
     sub: 'Walls, slab and debris out, permits pulled, site ready for your builder. Tap what’s coming out.'
   },
