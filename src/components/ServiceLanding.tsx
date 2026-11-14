@@ -99,7 +99,7 @@ export function ServiceLanding({ page }: { page: ServiceLandingData }) {
   const tile = page.sizer.find((t) => t.id === size) ?? null;
 
   const smsBody = useMemo(
-    () => (tile ? page.smsBody.replace(/\.$/, ` It is about ${tile.label.toLowerCase()}.`) : page.smsBody),
+    () => (tile ? page.smsBody.replace(/\.$/, `. It is about ${tile.label.toLowerCase()}.`) : page.smsBody),
     [tile, page.smsBody]
   );
   const telHref = `tel:+1${phone}`;
