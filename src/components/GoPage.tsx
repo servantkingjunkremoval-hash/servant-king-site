@@ -17,6 +17,11 @@ import { TRACKING } from '@/lib/brand';
  * page matches the ad group the visitor came from (message match → better
  * conversion, better Quality Score).
  *
+ * No prices here, and no quoting from photos. Every job is quoted free, on
+ * site, before anything is loaded — the same offer the ads now run. The tap
+ * tiles stay because they are a micro-commitment and because the taps are
+ * what fire go_step1/go_step2 into the Go Events tab.
+ *
  * Phone: this page uses the Quo lead line, not the main business line, so
  * every call and text from paid search lands in the inbox the follow-up
  * automations read and is attributable to Google Ads.
@@ -48,7 +53,7 @@ const STEP2: Tile[] = [
 const HEADLINES: Record<GoCategory, { h1: string; sub: string }> = {
   general: {
     h1: 'Overwhelmed by Clutter? Reclaim Your Space Today.',
-    sub: 'No forms. Tap what you need gone and get a real price in minutes.'
+    sub: 'No forms. Tap what you need gone and book a free on-site quote.'
   },
   furniture: {
     h1: 'Old Couch, Mattress, or Fridge? Gone Today.',
@@ -151,7 +156,7 @@ export function GoPage({
   const smsBody = useMemo(() => {
     const w = what ? LABEL[what] : 'some junk';
     const s = size ? ` — ${LABEL[size].toLowerCase()}` : '';
-    return `Hi Servant King, I need ${w.toLowerCase()} removed${s}. Here's a photo:`;
+    return `Hi Servant King, I need ${w.toLowerCase()} removed${s}. I would like a free on-site quote.`;
   }, [what, size]);
 
   // ChatGPT-ads visitors get the dedicated CHATGPT Quo line so their calls and
@@ -228,7 +233,7 @@ export function GoPage({
           <li>★★★★★ 360+ Google reviews</li>
           <li>Licensed &amp; insured</li>
           <li>Same-day available</li>
-          <li>Free, no-obligation price</li>
+          <li>Free, no-obligation on-site quote</li>
         </ul>
         <p className="mt-3 inline-block rounded-full bg-gold/20 px-3 py-1 text-xs font-semibold text-charcoal md:text-sm">
           New customers: 10% off for life — mention this page when you call.
@@ -295,19 +300,19 @@ export function GoPage({
         {step === 3 && (
           <section className="mt-10 animate-fade-in" aria-labelledby="go-step3">
             <h2 id="go-step3" className="text-sm font-semibold uppercase tracking-wide text-purple">
-              3 · Get your price
+              3 · Book your free quote
             </h2>
             <a
               href={telHref}
               onClick={() => onContact('call')}
               className="mt-3 hidden w-full items-center justify-center rounded-xl bg-purple px-6 py-5 text-lg font-bold text-white shadow-lg transition hover:bg-purple-dark md:flex"
             >
-              Call for Your Price — {phoneFormatted}
+              Call for Your Free Quote — {phoneFormatted}
             </a>
             <a href={smsHref} onClick={() => onContact('sms')} className="mt-3 block text-center text-sm font-medium text-purple underline underline-offset-4">
-              or text us a photo
+              or text us
             </a>
-            <p className="mt-4 text-center text-xs text-muted">Real price, no pressure. We answer 6am–8pm Mon–Sat.</p>
+            <p className="mt-4 text-center text-xs text-muted">The visit is free and there is no obligation. We answer 6am–8pm Mon–Sat.</p>
           </section>
         )}
 
@@ -342,7 +347,7 @@ export function GoPage({
           onClick={() => onContact('call')}
           className="flex w-full items-center justify-center rounded-xl bg-purple py-4 text-base font-bold text-white"
         >
-          {step === 3 ? `Call for Your Price — ${phoneFormatted}` : 'Skip the taps — call now'}
+          {step === 3 ? `Call for Your Free Quote — ${phoneFormatted}` : 'Skip the taps — call now'}
         </a>
       </div>
     </div>
