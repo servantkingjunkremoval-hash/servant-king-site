@@ -13,7 +13,13 @@ import type { ServiceLanding as ServiceLandingData } from '@/lib/serviceLandings
  * One page, one thought: the headline repeats what the visitor searched, and
  * everything below answers "can you do exactly this, what will it cost, can I
  * trust you" in that order. There is no navigation and no form — the only
- * things to tap are call, text, and the price sizer (which prefills the text).
+ * things to tap are call, text, and the job sizer (which prefills the text).
+ *
+ * No prices are shown. Every job is quoted free, on site, before anything is
+ * loaded — quoting from photos closed at roughly a third the rate and led to
+ * underbidding, so the ads and these pages both sell the visit, not a number.
+ * The sizer tiles stay because they are a micro-commitment and because the
+ * tap is what fires go_step2 into the Go Events tab.
  *
  * Phone: always the Quo lead line (650) 502-5464, rendered as plain text so
  * Google's forwarding-number snippet can swap it for ad visitors. The only
@@ -93,7 +99,7 @@ export function ServiceLanding({ page }: { page: ServiceLandingData }) {
   const tile = page.sizer.find((t) => t.id === size) ?? null;
 
   const smsBody = useMemo(
-    () => (tile ? page.smsBody.replace(/:$/, ` (${tile.label.toLowerCase()}):`) : page.smsBody),
+    () => (tile ? page.smsBody.replace(/\.$/, ` It is about ${tile.label.toLowerCase()}.`) : page.smsBody),
     [tile, page.smsBody]
   );
   const telHref = `tel:+1${phone}`;
@@ -157,7 +163,7 @@ export function ServiceLanding({ page }: { page: ServiceLandingData }) {
         onClick={() => tap('sms', where)}
         className="inline-flex flex-1 items-center justify-center rounded-lg bg-gold px-6 py-3.5 text-center text-base font-bold text-charcoal transition hover:brightness-105"
       >
-        Text a photo
+        Text us
       </a>
     </div>
   );
@@ -190,7 +196,8 @@ export function ServiceLanding({ page }: { page: ServiceLandingData }) {
               <Buttons where="hero" />
             </div>
             <p className="mt-3 text-xs text-cream/70">
-              No forms. Text a photo of the job and get a real price back, usually in minutes.
+              No forms, no obligation. We come out free, walk the job with you, and give you one flat price
+              before anything moves.
             </p>
             <p className="mt-4 inline-block rounded-full bg-gold/20 px-3 py-1 text-xs font-semibold text-cream">
               New customers: 10% off for life — mention this page when you call.
@@ -229,28 +236,28 @@ export function ServiceLanding({ page }: { page: ServiceLandingData }) {
         <p className="mt-5 border-l-4 border-gold pl-4 text-lg font-semibold text-purple">{page.painTurn}</p>
       </section>
 
-      {/* 3 · Tap-to-price: micro-commitment + price anchor + prefilled text.
-           Pages with no published band for their item (sizer: []) get a
-           one-photo price card instead of tiles. */}
+      {/* 3 · Job sizer: micro-commitment + prefilled text. No prices are shown —
+           every job is quoted free on site. Pages with no size tiles (sizer: [])
+           get the same free-quote card without them. */}
       <section className="border-y border-charcoal/10 bg-white/60" aria-labelledby="sizer">
         <div className="mx-auto w-full max-w-3xl px-5 py-9">
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted">What will it cost?</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted">How the price works</p>
           <h2 id="sizer" className="mt-1 font-display text-2xl font-semibold tracking-tight">
             {page.sizerQuestion}
           </h2>
           {page.sizer.length === 0 ? (
             <div className="mt-5 rounded-xl bg-purple p-5 text-cream">
-              <p className="font-display text-3xl font-semibold text-gold">One photo, one flat price</p>
+              <p className="font-display text-3xl font-semibold text-gold">Free on-site quote</p>
               <p className="mt-2 text-sm text-cream/80">
-                Labor, hauling, dump fees and sweep-up included. The number comes back usually in minutes — and it’s
-                locked before we start.
+                We come out at no charge, look at the job with you, and hand you one flat price. Labor,
+                hauling, dump fees and sweep-up are all in it — and it’s locked before we start.
               </p>
               <a
                 href={smsHref}
                 onClick={() => tap('sms', 'sizer')}
                 className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-gold px-5 py-3.5 text-base font-bold text-charcoal sm:w-auto"
               >
-                Text a photo for my price
+                Book my free quote
               </a>
             </div>
           ) : (
@@ -280,21 +287,21 @@ export function ServiceLanding({ page }: { page: ServiceLandingData }) {
               {tile ? (
                 <div className="mt-5 animate-fade-in rounded-xl bg-purple p-5 text-cream">
                   <p className="text-sm text-cream/75">{tile.label}</p>
-                  <p className="mt-1 font-display text-3xl font-semibold text-gold">{tile.price}</p>
+                  <p className="mt-1 font-display text-3xl font-semibold text-gold">Free on-site quote</p>
                   <p className="mt-2 text-sm text-cream/80">
-                    Labor, loading, dump fees and sweep-up included. Your exact number comes back from a photo — and
-                    it’s locked before we load.
+                    We come out at no charge, walk it with you, and give you one flat price. Labor, loading,
+                    dump fees and sweep-up included — and it’s locked before we load.
                   </p>
                   <a
                     href={smsHref}
                     onClick={() => tap('sms', 'sizer')}
                     className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-gold px-5 py-3.5 text-base font-bold text-charcoal sm:w-auto"
                   >
-                    Text a photo for my exact price
+                    Book my free quote
                   </a>
                 </div>
               ) : (
-                <p className="mt-4 text-sm text-muted">Tap one — we’ll show you what jobs like it usually cost.</p>
+                <p className="mt-4 text-sm text-muted">Tap one so we bring the right truck and crew.</p>
               )}
             </>
           )}
@@ -394,7 +401,10 @@ export function ServiceLanding({ page }: { page: ServiceLandingData }) {
         <div className="mx-auto w-full max-w-3xl px-5 pb-32 pt-10 md:pb-12">
           <p className="max-w-prose text-lg">
             <strong className="font-semibold">{page.ctaLabel}.</strong>{' '}
-            <span className="text-cream/80">Send a photo and we come back with a real number, not a range.</span>
+            <span className="text-cream/80">
+              We come out free, look at the job, and give you one flat price on the spot. Say yes and it is gone
+              the same visit.
+            </span>
           </p>
           <p className="mt-2 text-xs text-cream/70">
             We run four jobs a day, six days a week — Mondays and Saturdays fill first.
@@ -418,7 +428,7 @@ export function ServiceLanding({ page }: { page: ServiceLandingData }) {
           Call now
         </a>
         <a href={smsHref} onClick={() => tap('sms', 'sticky')} className="flex flex-1 items-center justify-center rounded-xl bg-gold py-3.5 text-base font-bold text-charcoal">
-          Text a photo
+          Text us
         </a>
       </div>
     </div>
