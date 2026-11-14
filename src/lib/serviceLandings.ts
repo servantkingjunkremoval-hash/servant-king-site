@@ -16,12 +16,15 @@
  *   the four guarantees → honest capacity line → call/text again.
  *
  * Deliberately NOT here: a value stack with invented dollar values, a fake
- * countdown, a form. Prices are the published Sep 3 bands only.
+ * countdown, a form, or any price. Every job is quoted free, on site. Quoting
+ * from photos closed at roughly a third the rate of an on-site visit and led
+ * to underbidding, so the ads and these pages both sell the visit.
  *
  * Rules for editing:
- *  - Every claim has to be something the crew actually does. Prices come from
- *    the confirmed rate sheet ($149 min / $250–700 typical / $800–1,500 full
- *    truck). Capability claims: confirmed by Chris 2026-09-10. Do not add
+ *  - Every claim has to be something the crew actually does. Do NOT publish
+ *    prices or price bands on these pages — the offer is a free on-site quote
+ *    and a flat price given before loading. Capability claims: confirmed by
+ *    Chris 2026-09-10. Do not add
  *    "unmarked trucks", "background-checked", or any certification unless
  *    Chris confirms it for this page.
  *  - Reviews are referenced by reviewer name from src/lib/reviews.ts. Never
@@ -70,12 +73,16 @@ export type ServiceLanding = {
   metaDescription: string;
 };
 
-/** Published price bands (Sep 3 rate sheet, approved for publishing). */
+/**
+ * Size descriptors for the sizer tiles. These are NOT prices and are not
+ * rendered — the tile tap exists for the micro-commitment and the go_step2
+ * tracking event. Pricing happens on site, free, before anything is loaded.
+ */
 const P = {
-  min: 'From $149',
-  typical: '$250–$700',
-  full: '$800–$1,500',
-  multi: 'Priced per load from photos'
+  min: 'Free on-site quote',
+  typical: 'Free on-site quote',
+  full: 'Free on-site quote',
+  multi: 'Free on-site quote'
 };
 
 export const SERVICE_LANDINGS: ServiceLanding[] = [
@@ -113,14 +120,14 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Broom-clean finish, keys back to your realtor or lockbox'
     ],
     steps: [
-      { title: 'Send photos or walk it on video', detail: 'A few photos of each room is enough. Ask and we walk the house with you on video.' },
-      { title: 'Get a flat price and a date', detail: 'A real number, not a range, on a schedule that fits your closing date.' },
+      { title: 'Book a free walkthrough', detail: 'We come out and walk the house with you. Out of state? We do it on video instead.' },
+      { title: 'Get a flat price and a date', detail: 'A real number on site, on a schedule that fits your closing date.' },
       { title: 'We clear it — you get the proof', detail: 'Keep pile protected, donations dropped, house swept. Photos and receipts sent to you.' }
     ],
     qa: [
       {
         q: 'Should we hold an estate sale first?',
-        a: 'Only if there is real value in the house — good furniture, tools, jewelry, collectibles. A sale company typically takes 30–40% and two to three weeks on site. Send photos and we will tell you honestly which side of that line you are on. If the sale already happened, we clear what is left.'
+        a: 'Only if there is real value in the house — good furniture, tools, jewelry, collectibles. A sale company typically takes 30–40% and two to three weeks on site. We will tell you honestly which side of that line you are on when we come out. If the sale already happened, we clear what is left.'
       },
       {
         q: 'I live out of state. Can this happen without me?',
@@ -132,15 +139,15 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'How much does an estate cleanout cost?',
-        a: 'Single items start at $149. A room or two usually lands between $250 and $700, and a full truck runs $800–$1,500. Whole-house estates are priced per load from photos — and the number is locked before we load.'
+        a: 'We come out and quote it free, because an estate is almost always more than it looks like from the doorway. You get one flat price on site, covering labor, loading, donation drop-off and dump fees — and it is locked before we load.'
       }
     ],
     reviews: ['Debra L.', 'Valeria G.', 'Chris M.'],
-    ctaLabel: 'Get your estate cleanout price',
-    smsBody: 'Hi Servant King, I need an estate cleanout. Here are some photos:',
+    ctaLabel: 'Book your free estate cleanout quote',
+    smsBody: 'Hi Servant King, I need an estate cleanout. I would like a free on-site quote.',
     title: 'Estate Cleanouts — Flat Price, Broom-Clean',
     metaDescription:
-      'Estate and probate cleanouts across the SF Peninsula, San Jose and Tri-Valley. We sort, donate and haul — flat price locked before we load. Call or text a photo.'
+      'Estate and probate cleanouts across the SF Peninsula, San Jose and Tri-Valley. We sort, donate and haul — free on-site quote, flat price locked before we load.'
   },
   {
     slug: 'hoarding-cleanup',
@@ -165,7 +172,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       { id: 'room', label: 'A room or a hallway', price: P.typical },
       { id: 'truck', label: 'About a truckload', price: P.full },
       { id: 'several', label: 'Several rooms', price: P.multi },
-      { id: 'house', label: 'The whole house', price: 'A full 2,500 sq ft home is commonly 8–12 loads' }
+      { id: 'house', label: 'The whole house', price: 'Free on-site quote' }
     ],
     included: [
       'Protective gear and containment for contaminated rooms',
@@ -176,8 +183,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'A load count and flat price before we arrive'
     ],
     steps: [
-      { title: 'Tell us what you’re facing', detail: 'Call to talk it through, or text photos of each room — closets included.' },
-      { title: 'Get a load count and a flat price', detail: 'Before we show up, not after. It does not move once we start.' },
+      { title: 'Tell us what you’re facing', detail: 'Call to talk it through, then we walk it with you — closets included.' },
+      { title: 'Get a load count and a flat price', detail: 'Given on site before we start. It does not move once we begin.' },
       { title: 'We clear it room by room', detail: 'Starting where it is easiest to win. Anything unclear, we ask first.' }
     ],
     qa: [
@@ -191,7 +198,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'How many truckloads will it take?',
-        a: 'A heavily filled 2,500 sq ft home commonly runs eight to twelve loads. Everyone underestimates volume from inside the house, so send photos of every room and we give you a load count and a price before we come.'
+        a: 'A heavily filled 2,500 sq ft home commonly runs eight to twelve loads. Everyone underestimates volume from inside the house, which is exactly why we walk it with you and give you a load count and a flat price on the spot.'
       },
       {
         q: 'Can we keep things?',
@@ -200,7 +207,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     ],
     reviews: ['Debra L.', 'Jennifer H.', 'Nathan T.'],
     ctaLabel: 'Talk through your situation',
-    smsBody: 'Hi Servant King, I need help with a hoarding cleanout. Here are some photos:',
+    smsBody: 'Hi Servant King, I need help with a hoarding cleanout. I would like a free on-site quote.',
     title: 'Hoarder Cleanouts, Without Judgment',
     metaDescription:
       'Compassionate hoarder cleanouts on the SF Peninsula, San Jose and Tri-Valley. Crews equipped for contaminated interiors, flat price before we arrive. Call or text.'
@@ -228,7 +235,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       { id: 'small', label: 'A few pieces', price: P.min },
       { id: 'half', label: 'About half a truck', price: P.typical },
       { id: 'full', label: 'A full truck', price: P.full },
-      { id: 'heavy', label: 'Concrete, tile or dirt', price: 'Priced by weight — send a photo' }
+      { id: 'heavy', label: 'Concrete, tile or dirt', price: 'Free on-site quote' }
     ],
     included: [
       'All loading — carried from wherever it sits',
@@ -239,8 +246,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'One pickup, or clean-as-you-go on your schedule'
     ],
     steps: [
-      { title: 'Text a photo of the pile', detail: 'Plus the address and when you need it gone.' },
-      { title: 'Get a flat price', detail: 'By volume; heavy material by weight. Locked before we load.' },
+      { title: 'Call or text to book', detail: 'Give us the address and when you need it gone.' },
+      { title: 'Get a flat price on site', detail: 'By volume; heavy material by weight. Locked before we load.' },
       { title: 'We haul it and sweep up', detail: 'End of job, or on a schedule while the work continues.' }
     ],
     qa: [
@@ -262,11 +269,11 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       }
     ],
     reviews: ['Chris M.', 'Valeria G.', 'Nathan T.'],
-    ctaLabel: 'Get your debris price',
-    smsBody: 'Hi Servant King, I need construction debris hauled. Here is a photo of the pile:',
+    ctaLabel: 'Book your free debris quote',
+    smsBody: 'Hi Servant King, I need construction debris hauled. I would like a free on-site quote.',
     title: 'Construction Debris Hauling, No Dumpster',
     metaDescription:
-      'Remodel and construction debris hauled from the SF Peninsula, San Jose and Tri-Valley. No roll-off, no permit, dump fees included. Text a photo for a price.'
+      'Remodel and construction debris hauled from the SF Peninsula, San Jose and Tri-Valley. No roll-off, no permit, dump fees included. Free on-site quote.'
   },
   {
     slug: 'garage-cleanout',
@@ -302,8 +309,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Driveway protection when it’s needed'
     ],
     steps: [
-      { title: 'Text a photo of the garage', detail: 'One wide shot from the driveway is usually enough.' },
-      { title: 'Get a flat price', detail: 'A real number back, usually in minutes. Locked before we load.' },
+      { title: 'Call or text to book', detail: 'Tell us the address and a time that works for you.' },
+      { title: 'Get a flat price on site', detail: 'A real number before anything moves. Locked before we load.' },
       { title: 'We clear it and sweep', detail: 'Most garages in one afternoon. You point at what stays.' }
     ],
     qa: [
@@ -325,11 +332,11 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       }
     ],
     reviews: ['Chris M.', 'Domonique M.', 'Gage'],
-    ctaLabel: 'Get your garage price',
-    smsBody: 'Hi Servant King, I need a garage cleanout. Here is a photo:',
+    ctaLabel: 'Book your free garage quote',
+    smsBody: 'Hi Servant King, I need a garage cleanout. I would like a free on-site quote.',
     title: 'Garage Cleanouts — One Visit, Flat Price',
     metaDescription:
-      'Garage cleanouts on the SF Peninsula, San Jose and Tri-Valley. We sort, donate and haul in one visit, swept clean. Text a photo, get a flat price in minutes.'
+      'Garage cleanouts on the SF Peninsula, San Jose and Tri-Valley. We sort, donate and haul in one visit, swept clean. Free on-site quote, flat price.'
   },
   {
     slug: 'house-cleanout',
@@ -364,7 +371,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Broom-clean finish'
     ],
     steps: [
-      { title: 'Send photos of each room', detail: 'Or book a walkthrough. Closets and garage included.' },
+      { title: 'Book a free walkthrough', detail: 'We look at every room, closets and garage included.' },
       { title: 'Get a flat price and a date', detail: 'A real number, locked before we load. It does not move on the day.' },
       { title: 'We clear every room', detail: 'Most single-family homes in one to two days. Swept when we leave.' }
     ],
@@ -375,7 +382,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'Will the price change once you see it?',
-        a: 'No. We price from photos or a walkthrough, and the number is locked before we load.'
+        a: 'No. We price it in front of you on site, and the number is locked before we load.'
       },
       {
         q: 'What happens to furniture that is still good?',
@@ -387,8 +394,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       }
     ],
     reviews: ['Valeria G.', 'Chris M.', 'Jim L.'],
-    ctaLabel: 'Get your whole-house price',
-    smsBody: 'Hi Servant King, I need a whole-house cleanout. Here are some photos:',
+    ctaLabel: 'Book your free whole-house quote',
+    smsBody: 'Hi Servant King, I need a whole-house cleanout. I would like a free on-site quote.',
     title: 'Whole-House Cleanouts — Flat Price',
     metaDescription:
       'Whole-house cleanouts on the SF Peninsula, San Jose and Tri-Valley. Every room cleared, donation first, broom-clean. Flat price locked before we load.'
@@ -427,7 +434,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Scheduled around your move-out date'
     ],
     steps: [
-      { title: 'Text a photo of what’s staying', detail: 'Plus your move-out date.' },
+      { title: 'Call or text to book', detail: 'Tell us your move-out date and we schedule around it.' },
       { title: 'Get a flat price and a slot', detail: 'Before the movers or after them — your call.' },
       { title: 'We haul it and sweep', detail: 'The place is empty and swept for your walkthrough.' }
     ],
@@ -450,11 +457,11 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       }
     ],
     reviews: ['Domonique M.', 'Chris M.', 'Jim L.'],
-    ctaLabel: 'Get your move-out price',
-    smsBody: 'Hi Servant King, I am moving out and need some things hauled. Here is a photo:',
+    ctaLabel: 'Book your free move-out quote',
+    smsBody: 'Hi Servant King, I am moving out and need some things hauled. I would like a free on-site quote.',
     title: 'Move-Out Junk Removal — Flat Price',
     metaDescription:
-      'Moving out on the SF Peninsula, San Jose or Tri-Valley? We haul what you are leaving and sweep up before your walkthrough. Text a photo for a flat price.'
+      'Moving out on the SF Peninsula, San Jose or Tri-Valley? We haul what you are leaving and sweep up before your walkthrough. Free on-site quote.'
   },
   // ── Wave 2 (drafted Sep 10, 2026) ────────────────────────────────────────
   {
@@ -475,7 +482,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'You’re listing soon, and it’s the first thing buyers will see.'
     ],
     painTurn: 'It came in in one piece. It leaves in several — in one visit.',
-    sizerQuestion: 'Send one photo of the tub and the path to the street',
+    sizerQuestion: 'Tell us about the tub and the path to the street',
     sizer: [],
     included: [
       'Draining the tub',
@@ -486,8 +493,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Dump fees and sweep-up included'
     ],
     steps: [
-      { title: 'Text a photo of the tub', detail: 'One of the tub, one of the way out to the street.' },
-      { title: 'Get a flat price', detail: 'Size, access and whether it sits in a deck decide it. Locked before we cut.' },
+      { title: 'Call or text to book', detail: 'Tell us roughly where it sits and how we get to the street.' },
+      { title: 'Get a flat price on site', detail: 'Size, access and whether it sits in a deck decide it. Locked before we cut.' },
       { title: 'We drain, cut and haul', detail: 'In one visit. Same-day and next-day slots are often open.' }
     ],
     qa: [
@@ -497,23 +504,23 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'Can you take the deck or pad too?',
-        a: 'Yes. Deck and pad removal is available as an add-on — mention it when you send the photo so it is in the price.'
+        a: 'Yes. Deck and pad removal is available as an add-on — mention it when you book so it is in the quote.'
       },
       {
         q: 'What do I need to do before you come?',
-        a: 'Tell us how it is wired and powered when you text the photo. We will tell you exactly what needs to happen before we arrive.'
+        a: 'Tell us how it is wired and powered when you book. We will tell you exactly what needs to happen before we arrive.'
       },
       {
         q: 'What does hot tub removal cost?',
-        a: 'Every tub is priced flat from a photo, because size, access and whether it is set into a deck change the job. The number you get is the number you pay — it is locked before we cut.'
+        a: 'Every tub is quoted free on site, because size, access and whether it is set into a deck change the job. The number you get is the number you pay — locked before we cut.'
       }
     ],
     reviews: ['Domonique M.', 'Chris M.', 'Gage'],
-    ctaLabel: 'Get your hot tub price',
-    smsBody: 'Hi Servant King, I need a hot tub removed. Here is a photo:',
+    ctaLabel: 'Book your free hot tub quote',
+    smsBody: 'Hi Servant King, I need a hot tub removed. I would like a free on-site quote.',
     title: 'Hot Tub Removal — One Visit, Flat Price',
     metaDescription:
-      'Hot tub and spa removal on the SF Peninsula, San Jose and Tri-Valley. Drained, cut down and hauled in one visit through a 36-inch gate. Text a photo for a flat price.'
+      'Hot tub and spa removal on the SF Peninsula, San Jose and Tri-Valley. Drained, cut down and hauled in one visit through a 36-inch gate. Free on-site quote.'
   },
   {
     slug: 'shed-removal',
@@ -533,7 +540,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'You want the space back for a garden, a patio or an ADU.'
     ],
     painTurn: 'Emptied, taken down and hauled — in one visit.',
-    sizerQuestion: 'Send a photo of the structure',
+    sizerQuestion: 'Tell us about the structure',
     sizer: [],
     included: [
       'Clearing what’s inside',
@@ -544,14 +551,14 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Dump fees and sweep-up included'
     ],
     steps: [
-      { title: 'Text a photo', detail: 'Of the structure and what’s inside it.' },
-      { title: 'Get a flat price', detail: 'Locked before we start. Slab removal priced separately if you want it.' },
+      { title: 'Call or text to book', detail: 'Tell us what the structure is and what is inside it.' },
+      { title: 'Get a flat price on site', detail: 'Locked before we start. Slab removal priced separately if you want it.' },
       { title: 'We take it down and haul it', detail: 'Contents and structure in the same visit.' }
     ],
     qa: [
       {
         q: 'Do I need a permit?',
-        a: 'It depends on the structure and your city. Send a photo and the address and we will tell you. When a permit is needed, we pull it — Servant King is licensed CSLB C-21.'
+        a: 'It depends on the structure and your city. Give us the address and we will tell you. When a permit is needed, we pull it — Servant King is licensed CSLB C-21.'
       },
       {
         q: 'Can you take what’s inside too?',
@@ -559,7 +566,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'What about the concrete slab?',
-        a: 'Slab removal is available. Concrete is heavy, so it is priced by weight — ask for it with your photo and it goes in the same flat price.'
+        a: 'Slab removal is available. Concrete is heavy, so it is priced by weight — ask for it when you book and it goes in the same flat price.'
       },
       {
         q: 'Do you do detached garages and carports?',
@@ -567,8 +574,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       }
     ],
     reviews: ['Chris M.', 'Gage', 'Jim L.'],
-    ctaLabel: 'Get your shed price',
-    smsBody: 'Hi Servant King, I need a shed or playset taken down and hauled. Here is a photo:',
+    ctaLabel: 'Book your free shed quote',
+    smsBody: 'Hi Servant King, I need a shed or playset taken down and hauled. I would like a free on-site quote.',
     title: 'Shed & Playset Removal — Flat Price',
     metaDescription:
       'Shed, playset and carport removal on the SF Peninsula, San Jose and Tri-Valley. Contents cleared, structure taken down and hauled. Licensed CSLB C-21.'
@@ -593,9 +600,9 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     painTurn: 'Point at it. It’s gone.',
     sizerQuestion: 'How much furniture?',
     sizer: [
-      { id: 'one', label: 'One piece', price: 'From $149' },
-      { id: 'few', label: 'A few pieces or a room', price: '$250–$700' },
-      { id: 'truck', label: 'A full truck', price: '$800–$1,500' }
+      { id: 'one', label: 'One piece', price: 'Free on-site quote' },
+      { id: 'few', label: 'A few pieces or a room', price: 'Free on-site quote' },
+      { id: 'truck', label: 'A full truck', price: 'Free on-site quote' }
     ],
     included: [
       'Carried from any room, any floor',
@@ -606,8 +613,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Swept clean when we leave'
     ],
     steps: [
-      { title: 'Text a photo', detail: 'Of the pieces, and tell us the floor.' },
-      { title: 'Get a flat price', detail: 'Usually in minutes. Locked before we load.' },
+      { title: 'Call or text to book', detail: 'Tell us the pieces and what floor they are on.' },
+      { title: 'Get a flat price on site', detail: 'Given before anything moves. Locked before we load.' },
       { title: 'We carry it out', detail: 'Same-day or next-day for most calls.' }
     ],
     qa: [
@@ -625,15 +632,15 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'What does removing one couch cost?',
-        a: 'Single items start at $149. Send a photo and you get your exact flat price back, usually in minutes.'
+        a: 'We come out at no charge and give you your exact flat price before we carry anything out. No obligation — if the number is not right, we head to the next job.'
       }
     ],
     reviews: ['Jennifer H.', 'Domonique M.', 'Nathan T.'],
-    ctaLabel: 'Get your furniture price',
-    smsBody: 'Hi Servant King, I need some furniture removed. Here is a photo:',
-    title: 'Furniture Removal — From $149',
+    ctaLabel: 'Book your free furniture quote',
+    smsBody: 'Hi Servant King, I need some furniture removed. I would like a free on-site quote.',
+    title: 'Furniture Removal — Free On-Site Quote',
     metaDescription:
-      'Couch, sectional and furniture removal on the SF Peninsula, San Jose and Tri-Valley. Carried from any floor, donation first. Single items from $149.'
+      'Couch, sectional and furniture removal on the SF Peninsula, San Jose and Tri-Valley. Carried from any floor, donation first. Free on-site quote.'
   },
   {
     slug: 'mattress-disposal',
@@ -655,8 +662,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     painTurn: 'We carry it out. You go back to your day.',
     sizerQuestion: 'How many beds?',
     sizer: [
-      { id: 'one', label: 'One mattress or set', price: 'From $149' },
-      { id: 'more', label: 'Mattresses plus other furniture', price: '$250–$700' }
+      { id: 'one', label: 'One mattress or set', price: 'Free on-site quote' },
+      { id: 'more', label: 'Mattresses plus other furniture', price: 'Free on-site quote' }
     ],
     included: [
       'Any size, twin to California king',
@@ -667,8 +674,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Same-day slots often open'
     ],
     steps: [
-      { title: 'Text a photo', detail: 'Tell us the size and the floor.' },
-      { title: 'Get a flat price', detail: 'Single items start at $149.' },
+      { title: 'Call or text to book', detail: 'Tell us the size and what floor it is on.' },
+      { title: 'Get a flat price on site', detail: 'Quoted free before anything leaves the house.' },
       { title: 'We carry it out', detail: 'Box spring and frame included if you want them gone.' }
     ],
     qa: [
@@ -686,15 +693,15 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'What does it cost?',
-        a: 'Single items start at $149. More beds, or a mattress plus other furniture, usually land in the $250–$700 range.'
+        a: 'We quote it free on site. One mattress or a whole bedroom set, you get one flat price before anything leaves the house.'
       }
     ],
     reviews: ['Jennifer H.', 'Chris M.', 'Nathan T.'],
-    ctaLabel: 'Get your mattress price',
-    smsBody: 'Hi Servant King, I need a mattress picked up. Here is a photo:',
-    title: 'Mattress Disposal & Pickup — From $149',
+    ctaLabel: 'Book your free mattress quote',
+    smsBody: 'Hi Servant King, I need a mattress picked up. I would like a free on-site quote.',
+    title: 'Mattress Disposal & Pickup — Free On-Site Quote',
     metaDescription:
-      'Mattress, box spring and bed frame pickup on the SF Peninsula, San Jose and Tri-Valley. Carried from any floor. Single items from $149.'
+      'Mattress, box spring and bed frame pickup on the SF Peninsula, San Jose and Tri-Valley. Carried from any floor. Free on-site quote.'
   },
   {
     slug: 'appliance-removal',
@@ -716,8 +723,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     painTurn: 'We do the heavy lifting. You pick the day.',
     sizerQuestion: 'How many appliances?',
     sizer: [
-      { id: 'one', label: 'One appliance', price: 'From $149' },
-      { id: 'more', label: 'A few, plus other junk', price: '$250–$700' }
+      { id: 'one', label: 'One appliance', price: 'Free on-site quote' },
+      { id: 'more', label: 'A few, plus other junk', price: 'Free on-site quote' }
     ],
     included: [
       'Fridge, freezer, washer, dryer, stove, dishwasher, microwave',
@@ -728,8 +735,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Dump fees included'
     ],
     steps: [
-      { title: 'Text a photo', detail: 'Tell us what it is and where it sits.' },
-      { title: 'Get a flat price', detail: 'Single items start at $149.' },
+      { title: 'Call or text to book', detail: 'Tell us what it is and where it sits.' },
+      { title: 'Get a flat price on site', detail: 'Quoted free before anything leaves the house.' },
       { title: 'We carry it out', detail: 'Same-day slots are often open.' }
     ],
     qa: [
@@ -739,7 +746,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'Do I need to disconnect it first?',
-        a: 'Unplug it and, for a washer, shut the water off. If it is gas or hardwired, tell us when you send the photo and we will tell you what has to happen before we arrive.'
+        a: 'Unplug it and, for a washer, shut the water off. If it is gas or hardwired, tell us when you book and we will tell you what has to happen before we arrive.'
       },
       {
         q: 'Can you get it out of a tight kitchen or upstairs laundry?',
@@ -747,15 +754,15 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'What does it cost?',
-        a: 'Single items start at $149. A few appliances plus other junk usually land in the $250–$700 range.'
+        a: 'We quote it free on site. One appliance or several plus other junk, you get one flat price before we carry anything out.'
       }
     ],
     reviews: ['Nathan T.', 'Chris M.', 'Jim L.'],
-    ctaLabel: 'Get your appliance price',
-    smsBody: 'Hi Servant King, I need an appliance removed. Here is a photo:',
-    title: 'Appliance Removal — From $149',
+    ctaLabel: 'Book your free appliance quote',
+    smsBody: 'Hi Servant King, I need an appliance removed. I would like a free on-site quote.',
+    title: 'Appliance Removal — Free On-Site Quote',
     metaDescription:
-      'Fridge, washer, dryer and stove removal on the SF Peninsula, San Jose and Tri-Valley. Refrigerant recovered, metal recycled. Single items from $149.'
+      'Fridge, washer, dryer and stove removal on the SF Peninsula, San Jose and Tri-Valley. Refrigerant recovered, metal recycled. Free on-site quote.'
   },
   {
     slug: 'office-cleanout',
@@ -777,9 +784,9 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     painTurn: 'One crew, your schedule, and paperwork your landlord accepts.',
     sizerQuestion: 'How big is the job?',
     sizer: [
-      { id: 'few', label: 'A few desks and chairs', price: '$250–$700' },
-      { id: 'truck', label: 'A small office (a full truck)', price: '$800–$1,500' },
-      { id: 'floor', label: 'A full floor or cubicle farm', price: 'Priced per load from a walkthrough' }
+      { id: 'few', label: 'A few desks and chairs', price: 'Free on-site quote' },
+      { id: 'truck', label: 'A small office (a full truck)', price: 'Free on-site quote' },
+      { id: 'floor', label: 'A full floor or cubicle farm', price: 'Free on-site quote' }
     ],
     included: [
       'Cubicles, desks, chairs, conference tables, filing cabinets',
@@ -790,7 +797,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Disposal documentation for your landlord or PM'
     ],
     steps: [
-      { title: 'Send photos or book a walkthrough', detail: 'Plus your building’s move-out rules and dates.' },
+      { title: 'Book a walkthrough', detail: 'Tell us your building’s move-out rules and dates.' },
       { title: 'Get a flat price and a window', detail: 'After hours or weekends if the building requires it.' },
       { title: 'We clear it and document it', detail: 'Disposal paperwork handed over when we are done.' }
     ],
@@ -813,8 +820,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       }
     ],
     reviews: ['Valeria G.', 'Nathan T.', 'Chris M.'],
-    ctaLabel: 'Get your office cleanout price',
-    smsBody: 'Hi Servant King, I need an office cleanout. Here are some photos:',
+    ctaLabel: 'Book your free office cleanout quote',
+    smsBody: 'Hi Servant King, I need an office cleanout. I would like a free on-site quote.',
     title: 'Office Cleanouts & Furniture Removal',
     metaDescription:
       'Office cleanouts and cubicle removal on the SF Peninsula, San Jose and Tri-Valley. After-hours crews, e-waste handled, disposal documentation provided.'
@@ -839,10 +846,10 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     painTurn: 'One visit. The unit is empty and the rent stops.',
     sizerQuestion: 'What size is the unit?',
     sizer: [
-      { id: 'few', label: 'Just a few items', price: 'From $149' },
-      { id: 'small', label: '5×5 or 5×10', price: '$250–$700' },
-      { id: 'mid', label: '10×10', price: '$800–$1,500' },
-      { id: 'large', label: '10×15 to 10×30', price: 'Priced per load from photos' }
+      { id: 'few', label: 'Just a few items', price: 'Free on-site quote' },
+      { id: 'small', label: '5×5 or 5×10', price: 'Free on-site quote' },
+      { id: 'mid', label: '10×10', price: 'Free on-site quote' },
+      { id: 'large', label: '10×15 to 10×30', price: 'Free on-site quote' }
     ],
     included: [
       'On-site sorting: keep, donate, haul',
@@ -853,8 +860,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Same-day for smaller units'
     ],
     steps: [
-      { title: 'Text a photo of the unit', detail: 'With the door open, plus the facility address.' },
-      { title: 'Get a flat price', detail: 'Locked before we load.' },
+      { title: 'Call or text to book', detail: 'Give us the facility address and your move-out deadline.' },
+      { title: 'Get a flat price on site', detail: 'Locked before we load.' },
       { title: 'We empty it and sweep', detail: 'We text you when it’s clear.' }
     ],
     qa: [
@@ -872,12 +879,12 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'What does a storage unit cleanout cost?',
-        a: 'A full 5×10 usually lands between $250 and $700, and a full 10×10 runs $800–$1,500. Bigger units are priced per load from photos, locked before we load.'
+        a: 'We meet you at the unit and quote it free, because volume is hard to judge until the door is open. One flat price, locked before we load.'
       }
     ],
     reviews: ['Valeria G.', 'Chris M.', 'Jim L.'],
-    ctaLabel: 'Get your storage unit price',
-    smsBody: 'Hi Servant King, I need a storage unit cleaned out. Here is a photo:',
+    ctaLabel: 'Book your free storage unit quote',
+    smsBody: 'Hi Servant King, I need a storage unit cleaned out. I would like a free on-site quote.',
     title: 'Storage Unit Cleanouts — Flat Price',
     metaDescription:
       'Storage unit cleanouts on the SF Peninsula, San Jose and Tri-Valley. Sorted on-site, donation first, broom-clean for move-out. Units up to 10×30.'
@@ -902,10 +909,10 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     painTurn: 'Bigger than the bin? That’s what we’re for.',
     sizerQuestion: 'How big is the pile?',
     sizer: [
-      { id: 'small', label: 'A small pile or a few bags', price: 'From $149' },
-      { id: 'half', label: 'About half a truck', price: '$250–$700' },
-      { id: 'full', label: 'A full truck', price: '$800–$1,500' },
-      { id: 'heavy', label: 'Dirt, sod, rock or concrete', price: 'Priced by weight — send a photo' }
+      { id: 'small', label: 'A small pile or a few bags', price: 'Free on-site quote' },
+      { id: 'half', label: 'About half a truck', price: 'Free on-site quote' },
+      { id: 'full', label: 'A full truck', price: 'Free on-site quote' },
+      { id: 'heavy', label: 'Dirt, sod, rock or concrete', price: 'Free on-site quote' }
     ],
     included: [
       'Branches, brush, leaves and clippings',
@@ -916,8 +923,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'We coordinate with your landscaper or arborist'
     ],
     steps: [
-      { title: 'Text a photo of the pile', detail: 'And tell us where the truck can park.' },
-      { title: 'Get a flat price', detail: 'By volume; heavy material by weight.' },
+      { title: 'Call or text to book', detail: 'Tell us the address and where the truck can park.' },
+      { title: 'Get a flat price on site', detail: 'By volume; heavy material by weight.' },
       { title: 'We load and rake up', detail: 'The yard is clear when we leave.' }
     ],
     qa: [
@@ -931,7 +938,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'Do you take dirt and concrete?',
-        a: 'Yes. Sod, dirt, rock and broken concrete are heavy, so they are priced by weight. Send a photo and we will give you the number.'
+        a: 'Yes. Sod, dirt, rock and broken concrete are heavy, so they are priced by weight. We weigh it into the quote when we come out.'
       },
       {
         q: 'Can you come after a storm?',
@@ -939,8 +946,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       }
     ],
     reviews: ['Domonique M.', 'Gage', 'Jim L.'],
-    ctaLabel: 'Get your yard waste price',
-    smsBody: 'Hi Servant King, I need yard waste hauled away. Here is a photo:',
+    ctaLabel: 'Book your free yard waste quote',
+    smsBody: 'Hi Servant King, I need yard waste hauled away. I would like a free on-site quote.',
     title: 'Yard Waste & Brush Removal — Flat Price',
     metaDescription:
       'Yard waste, brush and branch removal on the SF Peninsula, San Jose and Tri-Valley. Loaded, hauled and raked up. Heavy material priced by weight.'
@@ -965,9 +972,9 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     painTurn: 'One call per unit. Same crew, same standard, every time.',
     sizerQuestion: 'How much is left in the unit?',
     sizer: [
-      { id: 'room', label: 'A room’s worth', price: '$250–$700' },
-      { id: 'unit', label: 'A full unit', price: '$800–$1,500' },
-      { id: 'portfolio', label: 'Several units or recurring', price: 'Portfolio pricing — call us' }
+      { id: 'room', label: 'A room’s worth', price: 'Free on-site quote' },
+      { id: 'unit', label: 'A full unit', price: 'Free on-site quote' },
+      { id: 'portfolio', label: 'Several units or recurring', price: 'Free on-site quote' }
     ],
     included: [
       'Same-day or next-day turnover',
@@ -978,7 +985,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Consolidated monthly invoicing for portfolios'
     ],
     steps: [
-      { title: 'Text photos and the address', detail: 'Plus lockbox or key details and your deadline.' },
+      { title: 'Call or text with the address', detail: 'Plus lockbox or key details and your deadline.' },
       { title: 'Get a flat price', detail: 'Per unit, or portfolio pricing for recurring work.' },
       { title: 'We clear it and document it', detail: 'Photos and paperwork sent when we’re done.' }
     ],
@@ -1001,8 +1008,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       }
     ],
     reviews: ['Valeria G.', 'Chris M.', 'Nathan T.'],
-    ctaLabel: 'Get your turnover price',
-    smsBody: 'Hi Servant King, I manage a rental that needs a turnover cleanout. Here are some photos:',
+    ctaLabel: 'Book your free turnover quote',
+    smsBody: 'Hi Servant King, I manage a rental that needs a turnover cleanout. I would like a free on-site quote.',
     title: 'Rental Turnover Cleanouts for Landlords & PMs',
     metaDescription:
       'Tenant turnover, eviction and foreclosure cleanouts on the SF Peninsula, San Jose and Tri-Valley. Same or next day, photos and disposal paperwork included.'
@@ -1027,10 +1034,10 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     painTurn: 'If a dumpster really is cheaper for your job, we’ll tell you.',
     sizerQuestion: 'How much do you have?',
     sizer: [
-      { id: 'few', label: 'A few items', price: 'From $149' },
-      { id: 'half', label: 'About half a truck', price: '$250–$700' },
-      { id: 'full', label: 'A full truck', price: '$800–$1,500' },
-      { id: 'more', label: 'More than one load', price: 'Priced per load from photos' }
+      { id: 'few', label: 'A few items', price: 'Free on-site quote' },
+      { id: 'half', label: 'About half a truck', price: 'Free on-site quote' },
+      { id: 'full', label: 'A full truck', price: 'Free on-site quote' },
+      { id: 'more', label: 'More than one load', price: 'Free on-site quote' }
     ],
     included: [
       'All the lifting and loading',
@@ -1041,7 +1048,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Swept clean when we leave'
     ],
     steps: [
-      { title: 'Text a photo', detail: 'Of the pile, the room or the garage.' },
+      { title: 'Call or text to book', detail: 'Tell us whether it is a pile, a room or a whole garage.' },
       { title: 'Get our number — and the dumpster math', detail: 'If a container is cheaper for your job, we say so.' },
       { title: 'We load it and leave', detail: 'Usually one afternoon, same day or next.' }
     ],
@@ -1056,7 +1063,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'My driveway is narrow. Can a truck even get in?',
-        a: 'Usually yes, and where it cannot, we carry. Our trucks need less clearance than a roll-off delivery truck. Send a photo of the approach and we will tell you before we dispatch.'
+        a: 'Usually yes, and where it cannot, we carry. Our trucks need less clearance than a roll-off delivery truck. We check the approach when we come out to quote.'
       },
       {
         q: 'What can’t go in a dumpster anyway?',
@@ -1065,7 +1072,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     ],
     reviews: ['Chris M.', 'Nathan T.', 'Jim L.'],
     ctaLabel: 'Get our number first',
-    smsBody: 'Hi Servant King, I was about to rent a dumpster. Can you price this instead? Here is a photo:',
+    smsBody: 'Hi Servant King, I was about to rent a dumpster. I would like a free on-site quote.',
     title: 'Dumpster Rental Alternative — Pay for What You Use',
     metaDescription:
       'Thinking about a dumpster rental on the SF Peninsula, San Jose or Tri-Valley? Get our number first — you pay only for the space your load takes, labor included.'
@@ -1091,10 +1098,10 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     painTurn: 'Tell us your deadline. We work backward from it.',
     sizerQuestion: 'How much did the notice cite?',
     sizer: [
-      { id: 'few', label: 'A few items', price: 'From $149' },
-      { id: 'half', label: 'About half a truck', price: '$250–$700' },
-      { id: 'full', label: 'A full truck', price: '$800–$1,500' },
-      { id: 'more', label: 'The whole yard, or more', price: 'Priced per load from photos' }
+      { id: 'few', label: 'A few items', price: 'Free on-site quote' },
+      { id: 'half', label: 'About half a truck', price: 'Free on-site quote' },
+      { id: 'full', label: 'A full truck', price: 'Free on-site quote' },
+      { id: 'more', label: 'The whole yard, or more', price: 'Free on-site quote' }
     ],
     included: [
       'Yard, driveway, side-yard and carport junk',
@@ -1105,7 +1112,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Scheduled ahead of your compliance date'
     ],
     steps: [
-      { title: 'Text a photo and your notice date', detail: 'A photo of the cited area and the compliance date on the notice.' },
+      { title: 'Call or text with your notice date', detail: 'Tell us what was cited and the compliance date on the notice.' },
       { title: 'Get a flat price and a date before it', detail: 'Locked before we load. Same-day slots are often open.' },
       { title: 'We clear it and send the proof', detail: 'Before-and-after photos and disposal receipts for the inspector.' }
     ],
@@ -1120,7 +1127,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'I don’t live at the property. Can you still do it?',
-        a: 'Yes. Send photos and the address, and we send you photos when it is done — you do not have to be there.'
+        a: 'Yes. Give us the address and access details, and we send you photos when it is done — you do not have to be there.'
       },
       {
         q: 'Do you take tires and old appliances?',
@@ -1129,7 +1136,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     ],
     reviews: ['Chris M.', 'Domonique M.', 'Jim L.'],
     ctaLabel: 'Get it cleared before your deadline',
-    smsBody: 'Hi Servant King, I got a notice from the city and need this cleared. Here is a photo:',
+    smsBody: 'Hi Servant King, I got a notice from the city and need this cleared. I would like a free on-site quote.',
     title: 'Code Violation & Blight Cleanup',
     metaDescription:
       'Got a code violation notice for junk in your yard or driveway? We clear it before your deadline and send before-and-after photos and disposal receipts.'
@@ -1154,10 +1161,10 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     painTurn: 'Congratulations on the house. Let’s get their stuff out of it.',
     sizerQuestion: 'How much did they leave?',
     sizer: [
-      { id: 'few', label: 'A few items', price: 'From $149' },
-      { id: 'half', label: 'About half a truck', price: '$250–$700' },
-      { id: 'full', label: 'A full truck', price: '$800–$1,500' },
-      { id: 'more', label: 'More than one load', price: 'Priced per load from photos' }
+      { id: 'few', label: 'A few items', price: 'Free on-site quote' },
+      { id: 'half', label: 'About half a truck', price: 'Free on-site quote' },
+      { id: 'full', label: 'A full truck', price: 'Free on-site quote' },
+      { id: 'more', label: 'More than one load', price: 'Free on-site quote' }
     ],
     included: [
       'Garage, attic, basement, side-yard leftovers',
@@ -1168,8 +1175,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Swept clean before your movers arrive'
     ],
     steps: [
-      { title: 'Text a photo of what they left', detail: 'Plus your move-in date.' },
-      { title: 'Get a flat price', detail: 'Usually in minutes. Locked before we load.' },
+      { title: 'Call or text to book', detail: 'Tell us roughly what they left and your move-in date.' },
+      { title: 'Get a flat price on site', detail: 'Given before anything moves. Locked before we load.' },
       { title: 'We clear it before the movers', detail: 'Same-day and next-day slots are often open.' }
     ],
     qa: [
@@ -1187,12 +1194,12 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'What does it cost?',
-        a: 'Single items start at $149. Half a truck usually lands between $250 and $700, and a full truck runs $800–$1,500 — locked before we load.'
+        a: 'We come out free and quote it on site. One flat price covering labor, loading and dump fees, locked before we load.'
       }
     ],
     reviews: ['Chris M.', 'Nathan T.', 'Jim L.'],
     ctaLabel: 'Get their stuff out',
-    smsBody: 'Hi Servant King, we just bought a house and the previous owner left a lot behind. Here is a photo:',
+    smsBody: 'Hi Servant King, we just bought a house and the previous owner left a lot behind. I would like a free on-site quote.',
     title: 'Previous Owner Left Junk? New-Home Cleanouts',
     metaDescription:
       'Just bought a house and the sellers left their stuff? We clear the garage, attic and yard before you move in. Flat price, same or next day.'
@@ -1217,10 +1224,10 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     painTurn: 'They choose. We carry. The rest goes to a good home.',
     sizerQuestion: 'How much is staying behind?',
     sizer: [
-      { id: 'few', label: 'Just a few items', price: 'From $149' },
-      { id: 'rooms', label: 'A room or two', price: '$250–$700' },
-      { id: 'truck', label: 'About a full truck', price: '$800–$1,500' },
-      { id: 'house', label: 'The whole house', price: 'Priced per load from photos' }
+      { id: 'few', label: 'Just a few items', price: 'Free on-site quote' },
+      { id: 'rooms', label: 'A room or two', price: 'Free on-site quote' },
+      { id: 'truck', label: 'About a full truck', price: 'Free on-site quote' },
+      { id: 'house', label: 'The whole house', price: 'Free on-site quote' }
     ],
     included: [
       'Working from your parent’s move list',
@@ -1231,7 +1238,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Broom-clean finish, ready to list or rent'
     ],
     steps: [
-      { title: 'Send photos and the move date', detail: 'Or book a walkthrough. Tell us what is moving with your parent.' },
+      { title: 'Book a free walkthrough', detail: 'Tell us the move date and what is going with your parent.' },
       { title: 'Get a flat price and a plan', detail: 'In stages if that is easier — keepsakes first, the rest after the move.' },
       { title: 'We clear it with care', detail: 'Donations dropped, receipts sent, house swept.' }
     ],
@@ -1254,8 +1261,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       }
     ],
     reviews: ['Debra L.', 'Jennifer H.', 'Nathan T.'],
-    ctaLabel: 'Get your downsizing price',
-    smsBody: 'Hi Servant King, my parent is moving to assisted living and we need help with the house. Here are some photos:',
+    ctaLabel: 'Book your free downsizing quote',
+    smsBody: 'Hi Servant King, my parent is moving to assisted living and we need help with the house. I would like a free on-site quote.',
     title: 'Senior Downsizing & Assisted Living Move Cleanouts',
     metaDescription:
       'Moving a parent to assisted living on the SF Peninsula, San Jose or Tri-Valley? We clear the house at their pace — donation first, flat price.'
@@ -1280,10 +1287,10 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     painTurn: 'Drying out the house is the restoration company’s job. Hauling out what’s ruined is ours.',
     sizerQuestion: 'How much was damaged?',
     sizer: [
-      { id: 'few', label: 'A few pieces', price: 'From $149' },
-      { id: 'half', label: 'About half a truck', price: '$250–$700' },
-      { id: 'full', label: 'A full truck', price: '$800–$1,500' },
-      { id: 'heavy', label: 'Soaked drywall, plaster or tile', price: 'Priced by weight — send a photo' }
+      { id: 'few', label: 'A few pieces', price: 'Free on-site quote' },
+      { id: 'half', label: 'About half a truck', price: 'Free on-site quote' },
+      { id: 'full', label: 'A full truck', price: 'Free on-site quote' },
+      { id: 'heavy', label: 'Soaked drywall, plaster or tile', price: 'Free on-site quote' }
     ],
     included: [
       'Photos of what’s going before it leaves',
@@ -1294,7 +1301,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'A receipt for your claim file'
     ],
     steps: [
-      { title: 'Text photos of the damage', detail: 'And tell us if your adjuster needs to see anything first.' },
+      { title: 'Call or text to book', detail: 'Tell us if your adjuster needs to see anything first.' },
       { title: 'Get a flat price', detail: 'Wet, heavy material priced by weight. Locked before we load.' },
       { title: 'We photograph and haul', detail: 'Same day or next, before or after the restoration crew.' }
     ],
@@ -1309,7 +1316,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'Some of it is moldy.',
-        a: 'Our crews are trained and equipped for contaminated interiors, so moldy contents are not a reason we walk away. Tell us what you are seeing when you send photos.'
+        a: 'Our crews are trained and equipped for contaminated interiors, so moldy contents are not a reason we walk away. Tell us what you are seeing when you call.'
       },
       {
         q: 'How fast can you come?',
@@ -1317,8 +1324,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       }
     ],
     reviews: ['Chris M.', 'Nathan T.', 'Jim L.'],
-    ctaLabel: 'Get your damaged-items price',
-    smsBody: 'Hi Servant King, we had water/fire damage and need ruined items hauled. Here are some photos:',
+    ctaLabel: 'Book your free damaged-items quote',
+    smsBody: 'Hi Servant King, we had water/fire damage and need ruined items hauled. I would like a free on-site quote.',
     title: 'Water & Fire Damaged Furniture Removal',
     metaDescription:
       'Flood, fire or storm damaged furniture and belongings hauled out the same or next day. Photos for your adjuster, receipt for your claim file.'
@@ -1343,10 +1350,10 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     painTurn: 'Tell us the listing date. It will be ready before the photographer.',
     sizerQuestion: 'How much needs to go before you list?',
     sizer: [
-      { id: 'few', label: 'A few items', price: 'From $149' },
-      { id: 'rooms', label: 'A room or the garage', price: '$250–$700' },
-      { id: 'truck', label: 'About a full truck', price: '$800–$1,500' },
-      { id: 'house', label: 'Most of the house', price: 'Priced per load from photos' }
+      { id: 'few', label: 'A few items', price: 'Free on-site quote' },
+      { id: 'rooms', label: 'A room or the garage', price: 'Free on-site quote' },
+      { id: 'truck', label: 'About a full truck', price: 'Free on-site quote' },
+      { id: 'house', label: 'Most of the house', price: 'Free on-site quote' }
     ],
     included: [
       'Rooms, closets, garage, attic and yard',
@@ -1357,7 +1364,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Broom-clean finish'
     ],
     steps: [
-      { title: 'Text photos and your listing date', detail: 'Or have your agent send them.' },
+      { title: 'Call or text with your listing date', detail: 'Your agent can book it for you if that is easier.' },
       { title: 'Get a flat price and a date', detail: 'Scheduled ahead of the photographer and stager.' },
       { title: 'We clear it and sweep', detail: 'The house is ready to stage when we leave.' }
     ],
@@ -1380,8 +1387,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       }
     ],
     reviews: ['Valeria G.', 'Chris M.', 'Jim L.'],
-    ctaLabel: 'Get your pre-listing price',
-    smsBody: 'Hi Servant King, we are getting our house ready to sell and need some things hauled. Here are some photos:',
+    ctaLabel: 'Book your free pre-listing quote',
+    smsBody: 'Hi Servant King, we are getting our house ready to sell and need some things hauled. I would like a free on-site quote.',
     title: 'Pre-Listing Cleanouts for Home Sellers',
     metaDescription:
       'Selling your home on the SF Peninsula, San Jose or Tri-Valley? We clear rooms, garage and yard before the photographer and stager. Flat price.'
@@ -1395,7 +1402,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
     promise:
       'Whatever it is, gone today or tomorrow — without renting a truck, pulling a permit, or finding out the price after it is already loaded.',
     soThat:
-      'You send a photo, you get one number back, and the crew carries it from wherever it sits — so that the price you were quoted is the price you pay.',
+      'We come out at no charge, look at the job with you, and give you one number on the spot — so that the price you were quoted is the price you pay.',
     hero: '/images/go/junk-removal.jpg',
     pains: [
       'One pile, and every company wants to “come take a look” first.',
@@ -1403,7 +1410,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'A load too big for the bin and too small to justify a dumpster.',
       'Nobody will give you a straight number until someone is standing in your driveway.'
     ],
-    painTurn: 'Text one photo. Get one number. That number does not move.',
+    painTurn: 'One free visit. One number. That number does not move.',
     sizerQuestion: 'How much do you have?',
     sizer: [
       { id: 'few', label: 'A few items', price: P.min },
@@ -1420,14 +1427,14 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Swept clean when we leave'
     ],
     steps: [
-      { title: 'Text a photo', detail: 'One wide shot of the pile, the room or the garage is usually enough.' },
-      { title: 'Get a flat price', detail: 'Usually back in minutes. Locked before we load.' },
+      { title: 'Call or text to book', detail: 'Tell us whether it is a pile, a room or a whole garage.' },
+      { title: 'Get a flat price', detail: 'Given on site before anything moves. Locked before we load.' },
       { title: 'We haul it and sweep', detail: 'Same-day slots are often open. Mondays and Saturdays fill first.' }
     ],
     qa: [
       {
         q: 'What does junk removal cost?',
-        a: 'Single items start at $149. A room or two usually lands between $250 and $700, and a full truck runs $800–$1,500. Bigger jobs are priced per load from photos. You get your number before we come, and it is locked before we load.'
+        a: 'We come out at no charge and give you one flat price on site, covering labor, loading and dump fees. It is locked before we load and it does not move on the day.'
       },
       {
         q: 'Do I need to be there?',
@@ -1443,22 +1450,22 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       }
     ],
     reviews: ['Chris M.', 'Domonique M.', 'Gage'],
-    ctaLabel: 'Get your flat price',
-    smsBody: 'Hi Servant King, I need some junk hauled away. Here is a photo:',
+    ctaLabel: 'Book your free flat quote',
+    smsBody: 'Hi Servant King, I need some junk hauled away. I would like a free on-site quote.',
     title: 'Junk Removal — Flat Price, Same or Next Day',
     metaDescription:
-      'Junk removal on the SF Peninsula, San Jose and Tri-Valley. Text a photo, get one flat price back in minutes, locked before we load. Single items from $149.'
+      'Junk removal on the SF Peninsula, San Jose and Tri-Valley. Free on-site quote, one flat price locked before we load. Call or text to book a window.'
   },
   {
     slug: 'junk-removal-cost',
     adGroup: 'Junk Removal Pricing',
     nav: 'a junk removal quote',
     eyebrow: 'What it actually costs',
-    h1: 'What Junk Removal Costs — The Actual Numbers',
+    h1: 'What Junk Removal Costs, Answered Straight',
     promise:
-      'The real price bands, published on this page, before you call anyone — so you can budget the job without sitting through a sales visit to find out.',
+      'A straight answer on what your job costs — from someone standing in front of it, at no charge, before anything moves.',
     soThat:
-      'We put the numbers in writing and price your job flat from a photo — so that you are comparing real prices, not waiting on three companies to come look.',
+      'We come out free and put one flat number in your hand before anything moves — so that you are comparing a real price, not a guess over the phone.',
     hero: '/images/go/junk-removal-cost.jpg',
     pains: [
       'Every site says “call for a quote” and none of them say a number.',
@@ -1466,8 +1473,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'Three companies, three visits, three different stories.',
       'You just want to know whether this is a $200 job or a $1,200 job.'
     ],
-    painTurn: 'Here are the bands. Send a photo and we will tell you which one you are in.',
-    sizerQuestion: 'Find your job',
+    painTurn: 'The honest answer is that it depends on volume — so we come out and tell you for free.',
+    sizerQuestion: 'How big is the job?',
     sizer: [
       { id: 'few', label: 'One item or a few', price: P.min },
       { id: 'half', label: 'A room, or about half a truck', price: P.typical },
@@ -1483,14 +1490,14 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'The number locked before we load — no change on the day'
     ],
     steps: [
-      { title: 'Find your band above', detail: 'Most jobs land in one of the four. Heavy material is priced by weight.' },
-      { title: 'Text a photo to confirm it', detail: 'We come back with your exact flat price, usually in minutes.' },
-      { title: 'Book it, or don’t', detail: 'No visit required to get the number, and no pressure once you have it.' }
+      { title: 'Tell us roughly what you have', detail: 'Volume drives the price. Heavy material is priced by weight.' },
+      { title: 'We come out and quote it free', detail: 'You get your exact flat price on site, before anything moves.' },
+      { title: 'Book it, or don’t', detail: 'The visit costs nothing, and there is no pressure once you have the number.' }
     ],
     qa: [
       {
         q: 'Why do most companies refuse to publish prices?',
-        a: 'Because volume is hard to judge from a description, and a wrong number costs them the job either way. We publish bands instead of one price for the same reason — then confirm your exact flat price from a photo, which is accurate enough that we can lock it before we load.'
+        a: 'Because volume is hard to judge from a description, and a wrong number costs them the job either way. We would rather come out, look at it for free, and give you one number we will stand behind.'
       },
       {
         q: 'What makes a job cost more?',
@@ -1498,7 +1505,7 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'Is the price really flat?',
-        a: 'Yes. We price from photos or a walkthrough and the number does not move on the day. If you add items after we have quoted, we requote before loading them — never after.'
+        a: 'Yes. We price it on site and the number does not move on the day. If you add items after we have quoted, we requote before loading them — never after.'
       },
       {
         q: 'How does this compare to a dumpster?',
@@ -1506,11 +1513,11 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       }
     ],
     reviews: ['Chris M.', 'Jim L.', 'Nathan T.'],
-    ctaLabel: 'Get your exact price',
-    smsBody: 'Hi Servant King, can you price this job? Here is a photo:',
-    title: 'Junk Removal Cost — Published Price Bands',
+    ctaLabel: 'Book your free exact quote',
+    smsBody: 'Hi Servant King, can you price this job? I would like a free on-site quote.',
+    title: 'Junk Removal Cost — Free On-Site Quote',
     metaDescription:
-      'What junk removal actually costs on the SF Peninsula, San Jose and Tri-Valley. Published price bands from $149, exact flat price from a photo, locked before we load.'
+      'What junk removal actually costs on the SF Peninsula, San Jose and Tri-Valley. We come out free, quote one flat price on site, and lock it before we load.'
   },
   {
     slug: 'bulky-item-pickup',
@@ -1546,8 +1553,8 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       'No limit on the number of items'
     ],
     steps: [
-      { title: 'Text a photo', detail: 'Of the items and where they sit.' },
-      { title: 'Get a flat price', detail: 'By volume, usually back in minutes. Locked before we load.' },
+      { title: 'Call or text to book', detail: 'Tell us what the items are and where they sit.' },
+      { title: 'Get a flat price', detail: 'By volume, given on site. Locked before we load.' },
       { title: 'We carry it out', detail: 'Same-day slots are often open — no pickup window to wait for.' }
     ],
     qa: [
@@ -1565,15 +1572,15 @@ export const SERVICE_LANDINGS: ServiceLanding[] = [
       },
       {
         q: 'What does it cost?',
-        a: 'One or two large items start at $149. Several items usually land between $250 and $700, and a full truck runs $800–$1,500 — locked before we load.'
+        a: 'We quote it free on site. One item or a full truck, you get one flat price before anything is loaded.'
       }
     ],
     reviews: ['Domonique M.', 'Jennifer H.', 'Gage'],
-    ctaLabel: 'Get your bulky pickup price',
-    smsBody: 'Hi Servant King, I have some bulky items that need picking up. Here is a photo:',
+    ctaLabel: 'Book your free bulky pickup quote',
+    smsBody: 'Hi Servant King, I have some bulky items that need picking up. I would like a free on-site quote.',
     title: 'Bulky Item Pickup — No Item Limit, Flat Price',
     metaDescription:
-      'Bulky and oversized item pickup on the SF Peninsula, San Jose and Tri-Valley. Items the city won’t take, carried out from any room. No item limit, from $149.'
+      'Bulky and oversized item pickup on the SF Peninsula, San Jose and Tri-Valley. Items the city won’t take, carried out from any room. Free on-site quote.'
   },
 ];
 
